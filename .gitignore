@@ -1,1 +1,4 @@
 # Neovim configuration files .gitignore
+
+extend/
+shada/
