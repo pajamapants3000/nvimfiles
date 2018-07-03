@@ -112,6 +112,7 @@ Plug 'junegunn/fzf'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/context_filetype.vim'
 Plug 'tmhedberg/matchit'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
