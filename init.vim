@@ -144,7 +144,6 @@ Plug 'trapd00r/neverland-vim-theme'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'flazz/vim-colorschemes'
 Plug 'chriskempson/base16-vim'
-Plug 'shiracha/shiracha-vim'
 Plug 'w0ng/vim-hybrid'
 Plug 'sk1418/last256'
 
