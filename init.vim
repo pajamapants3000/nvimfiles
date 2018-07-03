@@ -7,7 +7,7 @@
 
 " *** Definitions *** "
 let g:NeovimConfigurationDirectory = $LOCALAPPDATA.'/nvim'
-let g:ExtendDirectory = $NeovimConfigurationDirectory.'/extend'
+let g:ExtendDirectory = g:NeovimConfigurationDirectory.'/extend'
 
 let g:filetype_aliases = {}
 let g:filetype_aliases['c++']         = 'cpp'
@@ -93,8 +93,7 @@ endfunc
 " *** Early-Set Options *** "
 
 " *** Plugins *** "
-" TODO: figure out how to use g:ExtendDirectory here; doesn't expand correctly and `execute 'call...' ...` doesn't work.
-call plug#begin('~/AppData/Local/nvim/extend')
+call plug#begin(g:ExtendDirectory)
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -204,6 +203,29 @@ nmap <F6> <Plug>ColorstepPrev
 nmap <F7> <Plug>ColorstepNext
 nmap <S-F7> <Plug>ColorstepReload
 
+" * Shougo/neosnippet.vim * "
+
+imap j<Tab>     <Plug>(neosnippet_expand)
+smap j<Tab>     <Plug>(neosnippet_expand)
+xmap j<Tab>     <Plug>(neosnippet_expand_target)
+imap <C-j>     <Plug>(neosnippet_jump)
+smap <C-j>     <Plug>(neosnippet_jump)
+
+" SuperTab like snippets' behavior.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" Expand the completed snippet trigger by <CR>.
+imap <expr><CR>
+\ (pumvisible() && neosnippet#expandable()) ?
+\ "\<Plug>(neosnippet_expand)" : "\<CR>"
+
+
+
 " * autozimu/LanguageClient-neovim * "
 " Required for operations modifying multiple buffers like rename.
 set hidden
@@ -283,11 +305,6 @@ nmap {{ ysiw{
 nmap }} ysiw}
 
 " *** Mappings *** "
-" Switch windows, simpler keybindings
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
 " Quick-escape/normal-mode
 inoremap jj <Esc>
 " Set filetype to filetype corresponding to alias under the cursor
