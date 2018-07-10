@@ -152,6 +152,8 @@ Plug 'pajamapants3000/vimwiki'
 call plug#end()
 
 " *** Plugin Configurations *** "
+" * fholgado/minibufexpl.vim * "
+let g:miniBufExplMaxSize = 2
 
 " * scrooloose/nerdtree * "
 let NERDTreeShowLineNumbers=0
