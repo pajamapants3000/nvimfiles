@@ -1,0 +1,163 @@
+# Begin html-markup.snippets
+
+# Snippets for coding in HTML and any other type using HTML markup for text
+#   can use to extend capabilities in vimwiki, for example 
+
+snippet heading1_inline
+alias h1      
+    <h1>${1:Enter Heading}</h1>${0}
+
+snippet heading2_inline
+alias h2      
+    <h2>${1:Enter Heading}</h2>${0}
+
+snippet heading3_inline
+alias h3      
+    <h3>${1:Enter Heading}</h3>${0}
+
+snippet heading4_inline
+alias h4      
+    <h4>${1:Enter Heading}</h4>${0}
+
+snippet heading5_inline
+alias h5      
+    <h5>${1:Enter Heading}</h5>${0}
+
+snippet heading6_inline
+alias h6      
+    <h6>${1:Enter Heading}</h6>${0}
+
+snippet unordered_list
+alias ul      
+    <ul>
+      <li>${1:Enter list item}</li>$2
+    </ul>
+    ${0}
+
+snippet ordered_list
+alias ol      
+    <ol>
+      <li>${1:Enter list item}</li>$2
+    </ol>
+    ${0}
+
+snippet list_item
+alias li      
+options head
+    <li>${1:Enter list item}</li>${0}
+
+snippet italic_text
+alias ita     
+    <i>${1:Text to put in italics}</i>${0}
+
+snippet emphasized_text
+alias em      
+    <em>${1:Text to emphasize}</em>${0}
+
+snippet bold_text
+alias bld     
+    <b>${1:Text to put in bold}</b>${0}
+
+snippet strong_text
+alias str     
+    <strong>${1:Text to make strong}</strong>${0}
+
+snippet small_text
+alias sm      
+    <small>${1:Text to make small}</small>${0}
+
+snippet highlighted_text
+alias hi      
+    <marked>${1:Text to highlight}</marked>${0}
+
+snippet strikethrough_text
+alias del     
+    <del>${1:Text to strike through}</del>${0}
+
+snippet underlined_text
+alias und     
+    <ins>${1:Text to underline}</ins>${0}
+
+snippet superscript_text
+alias sup     
+    <sup>${1:Text to put in superscript}</sup>${0}
+
+snippet subscript_text
+alias sub     
+    <sub>${1:Text to put in subscript}</sub>${0}
+
+snippet quoted_text
+alias q       
+    <q>${1:Text to put in quotes}</q>${0}
+
+snippet blockquoted_text
+alias bq      
+<blockquote>${1:Text to put in blockquotes}</blockquote>${0}
+
+snippet abbreviation
+alias abbr    
+    <abbr title="${1:Full meaning}">${2:Abbreviation}</abbr>${0}
+
+snippet Address_1
+alias addr1   
+    <address>
+    ${1:Name}<br />
+    ${2:Street1}<br />
+    ${3:Street2}<br />
+    ${4:City}, ${5:State}<br />
+    ${6:Country}<br />
+    </address>
+    ${0}
+
+snippet Contact_info_1
+alias cntct1  
+    <address>
+    ${1:Name}<br />
+    ${2:email}<br />
+    ${3:Website}<br />
+    Office: ${4:Office Number}<br />
+    Mobile: ${5:Mobile Number}<br />
+    </address>
+    ${0}
+
+snippet Cited_work_title
+alias ci      
+    <cite>${1:Title of cited work}</cite>${0}
+
+snippet Bi-directional_override
+alias bdo     
+    <bdo dir="rtl">${1:Text to type backwards!}</bdo>${0}
+
+snippet Computer_code
+alias code    
+    <code>
+    ${1:Computer code}
+    </code>
+    ${0}
+
+snippet Computer_input
+alias stdin   
+    <kbd>
+    ${1:Title of cited work}
+    </kbd>
+    ${0}
+
+snippet Computer_output
+alias stdout  
+    <samp>
+    ${1:Computer output}
+    </samp>
+    ${0}
+
+snippet Variable
+alias var     
+    <var>${1:Variable}</var>${0}
+
+snippet Preformatted_text
+alias pre     
+    <pre>
+    ${1:Preformatted text}
+    </pre>
+    ${0}
+
+

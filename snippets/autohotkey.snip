@@ -1,0 +1,24 @@
+# Begin ahk.snippets
+
+# Snippets for scripting in AutoHotKey
+
+snippet simple_heading
+alias hdr     
+options head
+    ; `!p snip.rv = fn`
+    ; ${1:description of program}
+    ${0}
+
+snippet full_heading
+alias hdrr    
+options head
+    ; File   : `!p snip.rv = snip.fn`
+    ; Program: ${1:`!p snip.rv = snip.basename`}
+    ; Purpose: ${2:What is this?}
+    ; Author : Tommy Lincoln <pajamapants3000@gmail.com>
+    ; License: ${3:None!}
+    ; Created: `date /T`
+    ; Updated: `date /T`
+    ${0}
+
+

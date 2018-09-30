@@ -1,0 +1,514 @@
+#
+# rust.snippets
+# Snippets for coding in Rust
+#
+
+snippet simple_heading
+alias hdr     
+options head
+    // `!p snip.rv = fn`
+    // ${1:description of program}
+    ${0}
+
+snippet full_heading
+alias hdrr    
+options head
+    /*
+     * File   : `!p snip.rv = snip.fn`
+     * Purpose: ${1:What is this file for?}
+     * Program: ${2:`!p snip.rv = snip.basename`}
+     * About  : ${3:What does this program do?}
+     * Authors: Tommy Lincoln <pajamapants3000@gmail.com>
+     * License: ${4:MIT; See LICENSE!}
+     * Notes  : ${5:Notes on successful compilation}
+     * Created: `date +%m/%d/%Y`
+     */
+
+    // *** Bring in to namespace *** {{{
+    // ^^^ Bring in to namespace ^^^ }}}
+
+    // *** Attributes *** {{{
+    // ^^^ Attributes ^^^ }}}
+
+    // *** Constants *** {{{
+    // ^^^ Constants ^^^ }}}
+
+    // *** Data Structures *** {{{
+    // ^^^ Data Structures ^^^ }}}
+
+    // *** Functions *** {{{
+    // ^^^ Functions ^^^ }}}
+
+    ${0}
+
+snippet main_function
+alias ma      
+options head
+    fn main() {
+        ${0}
+    }
+
+snippet public_main_function
+alias pma     
+options head
+    pub fn main() {
+        ${0}
+    }
+
+snippet create_type-inferred_binding
+alias l       
+options head
+    let ${1:Variable Name} = ${2:Value};${0}
+
+snippet create_mutable_type-inferred_binding
+alias lm      
+options head
+    let mut ${1:Variable Name} = ${2:Value};${0}
+
+snippet create_type-explicit_binding
+alias ll      
+options head
+    let ${1:Variable Name}: ${2:Variable Type} = ${3:Value};${0}
+
+snippet create_mutable_type-explicit_binding
+alias llm     
+options head
+    let mut ${1:Variable Name}: ${2:Variable Type} = ${3:Value};${0}
+
+snippet create_integer_binding
+alias li      
+options head
+    let ${1:Variable Name}: i32 = ${2:Value};${0}
+
+snippet create_unsigned_integer_binding
+alias lu      
+options head
+    let ${1:Variable Name}: u32 = ${2:Value};${0}
+
+snippet create_float_binding
+alias lf      
+options head
+    let ${1:Variable Name}: f64 = ${2:Value};${0}
+
+snippet create_32-bit_integer_binding
+alias li3     
+options head
+    let ${1:Variable Name}: i32 = ${2:Value};${0}
+
+snippet create_32-bit_unsigned_integer_binding
+alias lu3     
+options head
+    let ${1:Variable Name}: u32 = ${2:Value};${0}
+
+snippet create_64-bit_integer_binding
+alias li6     
+options head
+    let ${1:Variable Name}: i64 = ${2:Value};${0}
+
+snippet create_64-bit_unsigned_integer_binding
+alias lu6     
+options head
+    let ${1:Variable Name}: u64 = ${2:Value};${0}
+
+snippet create_32-bit_float_binding
+alias lf3     
+options head
+    let ${1:Variable Name}: f32 = ${2:Value};${0}
+
+snippet create_64-bit_float_binding
+alias lf6     
+options head
+    let ${1:Variable Name}: f64 = ${2:Value};${0}
+
+snippet create_16-bit_integer_binding
+alias li1     
+options head
+    let ${1:Variable Name}: i16 = ${2:Value};${0}
+
+snippet create_16-bit_unsigned_integer_binding
+alias lu1     
+options head
+    let ${1:Variable Name}: u16 = ${2:Value};${0}
+
+snippet create_8-bit_integer_binding
+alias li8     
+options head
+    let ${1:Variable Name}: i8 = ${2:Value};${0}
+
+snippet create_8-bit_unsigned_integer_binding
+alias lu8     
+options head
+    let ${1:Variable Name}: u8 = ${2:Value};${0}
+
+snippet create_mutable_integer_binding
+alias lim     
+options head
+    letm ${1:Variable Name}: i64 = ${2:Value};${0}
+
+snippet create_mutable_unsigned_integer_binding
+alias lum     
+options head
+    letm ${1:Variable Name}: u64 = ${2:Value};${0}
+
+snippet create_mutable_float_binding
+alias lfm     
+options head
+    letm ${1:Variable Name}: f64 = ${2:Value};${0}
+
+snippet create_mutable_32-bit_integer_binding
+alias li3m    
+options head
+    letm ${1:Variable Name}: i32 = ${2:Value};${0}
+
+snippet create_mutable_32-bit_unsigned_integer_binding
+alias lu3m    
+options head
+    letm ${1:Variable Name}: u32 = ${2:Value};${0}
+
+snippet create_mutable_32-bit_float_binding
+alias lf3m    
+options head
+    letm ${1:Variable Name}: f32 = ${2:Value};${0}
+
+snippet create_mutable_16-bit_integer_binding
+alias li1m    
+options head
+    letm ${1:Variable Name}: i16 = ${2:Value};${0}
+
+snippet create_mutable_16-bit_unsigned_integer_binding
+alias lu1m    
+options head
+    letm ${1:Variable Name}: u16 = ${2:Value};${0}
+
+snippet create_mutable_8-bit_integer_binding
+alias li8m    
+options head
+    letm ${1:Variable Name}: i8 = ${2:Value};${0}
+
+snippet create_mutable_8-bit_unsigned_integer_binding
+alias lu8m    
+options head
+    let ${1:Variable Name}: u8 = ${2:Value};${0}
+
+snippet create_&mut_str_binding
+alias ls      
+options head
+    let ${1:Variable Name}: &${2:'lifetime} mut str = ${3:Value};${0}
+
+snippet create_String_binding
+alias lS      
+options head
+    let ${1:Variable Name}: String = ${3:Value};${0}
+
+snippet create_string_literal_binding
+alias l"      
+options head
+    let ${1:Variable Name}: &'static str = "${2:String Literal}";${0}
+
+snippet pub_mod
+alias pmod    
+options head
+    pub mod ${1:`substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`} {
+        ${0}
+    } /* $1 */
+
+snippet struct
+alias st      
+options head
+struct ${1: StructNamee} {
+        ${0},
+    } /* $1 */
+
+snippet pub_struct
+alias pst     
+options head
+    pub struct ${1: PubStructNamee} {
+        ${0},
+    } /* $1 */
+
+# loops
+snippet loop_a_number_of_times
+alias fr_     
+    for _ in &[0..${1:N}] {
+        ${0}
+    }
+
+snippet loop_with_index
+alias fri     
+    for i in &[0..${1:N}] {
+        ${0: Block that needs an index i}
+    }
+
+# comments
+snippet line_comment
+alias //      
+    // ${1:Line Comment}
+    ${0}
+
+snippet wrap_comment
+alias /*      
+    /* ${1:Wrap Comment} */${0}
+
+snippet block_comment
+alias /**     
+    /*
+     * ${1:Block Comment}
+     */
+    ${0}
+
+snippet fixme
+alias fm      
+    // FIXME: $1
+
+snippet XXX:
+alias xxx    
+    // XXX: $1
+
+snippet todo
+alias td      
+    // TODO: $1
+
+# macros
+snippet println!_macro
+alias !pl     
+options head
+    println!("${1:format string}");${0}
+
+snippet println!_macro_with_args
+alias !pl,    
+options head
+    println!("${1:format string}", ${2:args});${0}
+
+snippet print!_macro
+alias !p      
+options head
+    print!("${1:format string}");${0}
+
+snippet print!_macro_with_args
+alias !p,     
+options head
+    print!("${1:format string}", ${2:args});${0}
+
+snippet writeln!_macro
+alias !wl     
+options head
+    writeln!(${1:buffer}, "${2:format string}").unwrap();${0}
+
+snippet writeln!_macro_with_args
+alias !wl,    
+options head
+    writeln!(${1:buffer}, "${2:format string}", ${3:args}).unwrap();${0}
+
+snippet write_macro
+alias !w      
+options head
+    write!(${1:buffer}, "${2:format string}").unwrap();${0}
+
+snippet write!_macro_with_args
+alias !w,     
+options head
+    write!(${1:buffer}, "${2:format string}", ${3:args}).unwrap();${0}
+
+snippet format!_macro
+alias !f      
+options word
+    format!("${1:format string}")${0}
+
+snippet format!_macro_with_args
+alias !f,     
+options word
+    format!("${1:format string}", ${2:args})${0}
+
+snippet vec!_macro
+alias !v      
+options word
+    vec![${1:items}]${0}
+
+snippet assert!_macro
+alias !as     
+options head
+    assert!(${1:assertion})${0}
+
+snippet assert!_macro_with_custom_message
+alias !ass    
+options head
+    assert!(${1:assertion}, "${2:message}")${0}
+
+snippet assert!_macro_with_custom_message_with_args
+alias !as,    
+options head
+    assert!(${1:assertion}, "${2:message}", ${3:message args})${0}
+
+snippet assert_eq!_macro
+alias !ae     
+options head
+    assert_eq!(${1:val1}, ${2:val2})${0}
+
+snippet assert_eq!_macro_with_custom_message
+alias !aee    
+options head
+    assert_eq!(${1:val1}, ${2:val2}, "${3:message}")${0}
+
+snippet assert!_macro_with_custom_message_with_args
+alias !ae,    
+options head
+    assert_eq!(${1:val1}, ${2:val2}, "${3:message}", ${4:message args})${0}
+
+# attributes
+snippet derive_on_following_item_Debug
+alias #dd     
+options head
+    #[derive(Debug)]
+    ${0}
+
+snippet derive_on_enclosing_item_Debug
+alias #!dd    
+options head
+    #[derive(Debug)]
+    ${0}
+
+snippet derive_on_following_item
+alias #d      
+options head
+    #[derive($1)]
+    ${0}
+
+snippet derive_on_enclosing_item
+alias #!d     
+options head
+    #![derive($1)]
+    ${0}
+
+snippet allow_on_following_item
+alias #a      
+options head
+    #[allow($1)]
+    ${0}
+
+snippet allow_on_enclosing_item
+alias #!a     
+options head
+    #![allow($1)]
+    ${0}
+
+snippet allow_dead_code_on_following_item
+alias #adc    
+options head
+    #[allow(dead_code)]
+    ${0}
+
+snippet allow_dead_code_on_enclosing_item
+alias #!adc   
+options head
+    #![allow(dead_code)]
+    ${0}
+
+snippet deny_on_following_item
+alias #dy     
+options head
+    #[deny($1)]
+    ${0}
+
+snippet deny_on_enclosing_item
+alias #!dy    
+options head
+    #![deny($1)]
+    ${0}
+
+snippet forbid_on_following_item
+alias #fb     
+options head
+    #[forbid($1)]
+    ${0}
+
+snippet forbid_on_enclosing_item
+alias #!fb    
+options head
+    #![forbid($1)]
+    ${0}
+
+snippet warn_on_following_item
+alias #w      
+options head
+    #[warn($1)]
+    ${0}
+
+snippet warn_on_enclosing_item
+alias #!w     
+options head
+    #![warn($1)]
+    ${0}
+
+snippet activate_compiler_feature_in_crate
+alias #f      
+options head
+    #![feature($1)]
+    ${0}
+
+snippet inline_following_item
+alias #i      
+options head
+    #[inline]
+    ${0}
+
+snippet inline_following_item_always
+alias #ia     
+options head
+    #[inline(always)]
+    ${0}
+
+snippet inline_following_item_never
+alias #in     
+options head
+    #[inline(never)]
+    ${0}
+
+snippet set_compile_condition_on_following_item
+alias #c      
+options head
+    #[cfg($1)]
+    ${0}
+
+snippet set_compile_condition_on_enclosing_item
+alias #!c     
+options head
+    #![cfg($1)]
+    ${0}
+
+snippet set_any_compile_condition_on_following_item
+alias #can    
+options head
+    #[cfg(any($1))]
+    ${0}
+
+snippet set_any_compile_condition_on_enclosing_item
+alias #!can   
+options head
+    #![cfg(any($1))]
+    ${0}
+
+snippet set_all_compile_condition_on_following_item
+alias #cal    
+options head
+    #[cfg(all($1))]
+    ${0}
+
+snippet set_all_compile_condition_on_enclosing_item
+alias #!cal   
+options head
+    #![cfg(all($1))]
+    ${0}
+
+snippet set_not_compile_condition_on_following_item
+alias #cn     
+options head
+    #[cfg(not($1))]
+    ${0}
+
+snippet set_not_compile_condition_on_enclosing_item
+alias #!cn    
+options head
+    #![cfg(not($1))]
+    ${0}
+
+

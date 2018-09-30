@@ -1,0 +1,346 @@
+#
+# Snippets for Racket code
+# 
+
+# Note: The following symbols are used on the placeholder ids
+#       * indicates an optional form that may be repeated with space separation
+#       + indicates a required form that may be repeated with space separation
+#       [] indicates an optional form
+
+# Basic Racket procedures
+snippet #lang
+alias #l 
+    #lang ${1:language}
+    ${0}
+
+snippet #lang_racket
+alias #lr 
+    #lang racket
+
+
+snippet #lang_racket/base
+alias #lrb 
+    #lang racket/base
+
+
+snippet #lang_scribble/base
+alias #lsb 
+    #lang scribble/base
+
+
+snippet module
+alias mod 
+    (module ${1:id} ${2:module-path}
+      ${3:form*})
+    ${0}
+
+snippet module*
+alias mod* 
+    (module* ${1:id} ${2:module-path}
+      ${3:form*})
+    ${0}
+
+snippet module*_with_all_bindings_from_enclosing_module
+alias mod* 
+    (module* ${1:id} #f
+      ${2:form*})
+    ${0}
+
+snippet module+
+alias mod+ 
+    (module+ ${1:id}
+      ${2:form*})
+    ${0}
+
+snippet submod
+alias smod 
+    (submod ${1:root-module} ${2:submod-path-element*})${0}
+
+snippet submod_rooted_here
+alias smod. 
+    (submod "." ${1:submod-path-element*})${0}
+
+snippet submod_rooted_from_parent
+alias smod.. 
+    (submod ".." ${1:submod-path-element*})${0}
+
+snippet provide
+alias pv 
+    (provide ${1:provide-spec*})${0}
+
+snippet provide_all-defined-out
+alias pva 
+    (provide (all-defined-out))${0}
+
+snippet provide_all-from-out
+alias pvf 
+    (provide (all-from-out ${1:module-path*}))${0}
+
+snippet require_-_simple
+alias rq 
+    (require ${1:require-spec*})${0}
+
+snippet contract-out_-_simple
+alias co 
+    (contract-out (${1:id} ${2:contract-expr}))${0}
+
+snippet and/c
+alias a/c 
+    (and/c ${1:contract} ${2:contract+})${0}
+
+snippet or/c
+alias o/c 
+    (or/c ${1:contract} ${2:contract+})${0}
+
+# Creating new bindings
+snippet define_constant
+alias def 
+    (define ${1:id} ${2:expr})${0}
+
+snippet define_procedure
+alias deff 
+    (define (${1:id} ${2:id*}) ${3:expr+})${0}
+
+snippet define/contract_-_constant
+alias d/c 
+    (define/contract ${1:id} ${2:contract-expr} ${3:init-value-expr})${0}
+
+snippet define/contract_-_constant_with_free-var
+alias d/cfv 
+    (define/contract ${1:id}
+      ${2:contract-expr}
+      #:freevar ${3:id} ${4:contract-expr}
+      ${5:init-value-expr})${0}
+
+snippet define/contract_-_constant_with_two_free-vars
+alias d/cfvs 
+    (define/contract ${1:id}
+      ${2:contract-expr}
+      #:freevars (
+        [${3:id} ${4:contract-expr}]
+        [${5:id} ${6:contract-expr}])
+      ${7:init-value-expr})${0}
+
+snippet define/contract_-_procedure
+alias df/c 
+    (define/contract (${1:id} ${1:arg*})
+      ${3:contract-expr}
+      ${4:body+})${0}
+
+snippet define/contract_-_procedure
+alias df/c 
+    (define/contract (${1:id} ${1:arg*})
+      ${3:contract-expr}
+      ${4:body+})${0}
+
+snippet define/contract_-_procedure_with_free-var
+alias df/cfv 
+    (define/contract (${1:id} ${2:arg*})
+      ${3:contract-expr}
+      #:freevar ${4:id} ${5:contract-expr}
+      ${6:body+})${0}
+
+snippet define/contract_-_procedure_with_two_free-vars
+alias df/cfvs 
+    (define/contract (${1:id} ${2:arg*})
+      ${3:contract-expr}
+      #:freevars (
+        [${4:id} ${5:contract-expr}]
+        [${6:id} ${7:contract-expr}])
+      ${8:body+})${0}
+
+
+snippet lambda
+alias lmb 
+    (lambda (${1:id*}) ${2:expr+})${0}
+
+snippet lambda
+alias λ 
+    (λ (${1:id*}) ${2:expr+})${0}
+
+snippet let_with_one_binding
+alias lt 
+    (let ([${1:id} ${2:expr}]) ${3:expr+})${0}
+
+snippet let_with_two_bindings
+alias lt2 
+    (let ([${1:id} ${2:expr}] [${3:id} ${4:expr}]) ${5:expr+})${0}
+
+snippet let_with_three_bindings
+alias lt3 
+    (let ([${1:id} ${2:expr}]
+        [${3:id} ${4:expr}]
+        [${5:id} ${6:expr}])
+      ${7:expr+})
+    ${0}
+
+snippet let*_with_one_binding
+alias lt* 
+    (let* ([${1:id} ${2:expr}]) ${3:expr+})${0}
+
+snippet let*_with_two_bindings
+alias lt** 
+    (let* ([${1:id} ${2:expr}] [${3:id} ${4:expr}]) ${5:expr+})${0}
+
+snippet let*_with_three_bindings
+alias lt*** 
+    (let* ([${1:id} ${2:expr}]
+        [${3:id} ${4:expr}]
+        [${5:id} ${6:expr}])
+      ${7:expr+})
+    ${0}
+
+snippet letrec_with_one_binding
+alias ltr 
+    (letrec ([${1:id} ${2:expr}]) ${3:expr+})${0}
+
+snippet letrec_with_two_bindings
+alias ltrr 
+    (letrec ([${1:id} ${2:expr}] [${3:id} ${4:expr}]) ${5:expr+})${0}
+
+snippet letrec_with_three_bindings
+alias ltrrr 
+    (letrec ([${1:id} ${2:expr}]
+        [${3:id} ${4:expr}]
+        [${5:id} ${6:expr}])
+      ${7:expr+})
+    ${0}
+
+# Input/Ouput
+snippet printf
+alias pf 
+    (printf "${1:format-string}" ${2:string-expr*})${0}
+
+# Conditionals and Control Flow
+snippet if
+alias if 
+    (if ${1:predicate} ${2:then-expr} ${3:else-expr})${0}
+
+snippet switch_statement,_2_options_plus_default
+alias condd 
+    (cond
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [else ${2:then-body+}])
+
+snippet switch_statement,_2_options_plus_default
+alias condd 
+    (cond
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [else ${2:then-body+}])
+
+snippet switch_statement,_3_options_plus_default
+alias cond3d 
+    (cond
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [else ${2:then-body+}])
+
+snippet switch_statement,_4_options_plus_default
+alias cond4d 
+    (cond
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [else ${2:then-body+}])
+
+snippet switch_statement,_5_options_plus_default
+alias cond5d 
+    (cond
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [else ${2:then-body+}])
+
+snippet switch_statement,_6_options_plus_default
+alias cond6d 
+    (cond
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [else ${2:then-body+}])
+
+snippet switch_statement,_2_options
+alias cond 
+    (cond
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}])
+
+snippet switch_statement,_3_options
+alias cond3 
+    (cond
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}])
+
+snippet switch_statement,_4_options
+alias cond4 
+    (cond
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}])
+
+snippet switch_statement,_5_options
+alias cond5 
+    (cond
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}])
+
+snippet switch_statement,_6_options
+alias cond6 
+    (cond
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}]
+      [${1:test-expr} ${2:then-body+}])
+
+snippet and
+alias and 
+    (and ${1:test-expr} ${2:test-expr+})${0}
+
+snippet or
+alias or 
+    (or ${1:test-expr} ${2:test-expr+})${0}
+
+# Strings
+snippet substring
+alias substr 
+    (substring ${1:string} ${2:start} ${3:[end]})${0}
+
+snippet string-length
+alias strlen 
+    (string-length ${1:string})${0}
+
+snippet string-append
+alias strap 
+    (string-append ${1:string-expr} ${2:string-expr+})${0}
+
+# Predicates
+snippet number?
+alias ?num 
+    (number? ${1:x})${0}
+
+snippet positive?
+alias ?pos 
+    (positive? ${1:x})${0}
+
+snippet negative?
+alias ?neg 
+    (negative? ${1:x})${0}
+
+# Conversions
+

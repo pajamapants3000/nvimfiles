@@ -1,0 +1,973 @@
+# Begin cs.snippets
+
+# Snippets for coding in C#
+snippet if_statement
+alias if      
+options head
+    if (${1:condition})
+    {
+        ${2:block}
+    }
+    ${0}
+
+snippet simple_for_loop_counter
+alias fo      
+options head
+    for (int ${1:i} = 0; $1 < ${2:range}; ++$1)
+    {
+        ${0}
+    }
+
+snippet general_for_setup
+alias for     
+options head
+    for (${1:initialize}; ${2:test}; ${3:alter})
+    {
+        ${0}
+    }
+
+snippet do-while_loop
+alias do      
+options head
+    do
+    {
+        ${0}
+    } while (${1:test});
+
+snippet foreach
+alias fe      
+options head
+    foreach (${1:var} in ${2:collection})
+    {
+        ${3:loop body}
+    }
+    ${0}
+
+snippet single_line_comment
+alias //      
+    // ${1:Enter_comment_here}
+
+
+snippet basic_comment
+alias /*      
+    /* ${1:Enter_comment_here} */${0}
+
+snippet multi-line_comment
+alias /**     
+    /*
+     * ${1:Enter_comment_here}
+     */${0}
+
+snippet try/catch
+alias tc      
+options head
+    try
+    {
+        ${1:code block}
+    }
+    catch (${2:Exception} ex)
+    {
+        ${3:handle exception}
+    }
+    ${0}
+
+snippet try/finally
+alias tf      
+options head
+    try
+    {
+        ${1:code block}
+    }
+    finally
+    {
+        ${4:final code to _always_ execute at the end}
+    }
+    ${0}
+
+snippet try/catch/catch
+alias tcc     
+options head
+    try
+    {
+        ${1:code block}
+    }
+    catch (${2:Exception} ex)
+    {
+        ${3:handle exception}
+    }
+    catch (${4:Exception} ex)
+    {
+        ${5:handle exception}
+    }
+    ${0}
+
+snippet try/catch/catch/catch
+alias tccc    
+options head
+    try
+    {
+        ${1:code block}
+    }
+    catch (${2:Exception} ex)
+    {
+        ${3:handle exception}
+    }
+    catch (${4:Exception} ex)
+    {
+        ${5:handle exception}
+    }
+    catch (${6:Exception} ex)
+    {
+        ${7:handle exception}
+    }
+    ${0}
+
+snippet try/catch/finally
+alias tcf     
+options head
+    try
+    {
+        ${1:code block}
+    }
+    catch (${2:Exception} ex)
+    {
+        ${3:handle exception}
+    }
+    finally
+    {
+        ${4:final code to _always_ execute at the end}
+    }
+    ${0}
+
+snippet try/catch/catch/finally
+alias tccf    
+options head
+    try
+    {
+        ${1:code block}
+    }
+    catch (${2:Exception} ex)
+    {
+        ${3:handle exception}
+    }
+    catch (${4:Exception} ex)
+    {
+        ${5:handle exception}
+    }
+    finally
+    {
+        ${6:final code to _always_ execute at the end}
+    }
+    ${0}
+
+snippet try/catch/catch/catch/finally
+alias tcccf   
+options head
+    try
+    {
+        ${1:code block}
+    }
+    catch (${2:Exception} ex)
+    {
+        ${3:handle exception}
+    }
+    catch (${4:Exception} ex)
+    {
+        ${5:handle exception}
+    }
+    catch (${6:Exception} ex)
+    {
+        ${7:handle exception}
+    }
+    finally
+    {
+        ${8:final code to _always_ execute at the end}
+    }
+    ${0}
+
+snippet public_class
+alias ucl     
+    public class ${1:ClassName}
+    {
+        ${0}
+    }
+
+snippet public_class_with_inheritance
+alias ucls    
+    public class ${1:ClassName} : ${2:ParentName}
+    {
+        ${0}
+    }
+
+snippet private_class
+alias cl      
+    private class ${1:ClassName}
+    {
+        ${0}
+    }
+
+snippet private_class_with_inheritance
+alias cl      
+    private class ${1:ClassName} : ${2:ParentName}
+    {
+        ${0}
+    }
+
+snippet namespace
+alias ns      
+    namespace ${1:NamespaceName}
+    {
+        ${0}
+    }
+
+snippet public_function/method
+alias ufn     
+    public ${1:Type} ${2:Name}(${3:Arguments})
+    {
+        ${0}
+    }
+
+snippet private_function/method
+alias fn      
+    private ${1:Type} ${2:Name}(${3:Arguments})
+    {
+        ${0}
+    }
+
+snippet private_property_-_simple
+alias pro     
+    private ${1:Type} ${2:Name} { get; set; }
+
+snippet private_property_-_full
+alias prop    
+    private $1 `!p snip.rv = '_' + ''.join(t[2].[0].lower() + t[2][1:])`
+    private ${1:Type} ${2:Name}
+    {
+        get
+        {
+            return `!p snip.rv = '_' + ''.join(t[2].[0].lower() + t[2][1:])`;
+        }
+        set
+        {
+            `!p snip.rv = '_' + ''.join(t[2].[0].lower() + t[2][1:])` = value;
+        }
+    }
+
+snippet public_property_-_simple
+alias upro    
+    public ${1:Type} ${2:Name} { get; set; }
+
+snippet public_property_-_full
+alias uprop   
+    private $1 `!p snip.rv = '_' + ''.join(t[2].[0].lower() + t[2][1:])`
+    public ${1:Type} ${2:Name}
+    {
+        get
+        {
+            return `!p snip.rv = '_' + ''.join(t[2].[0].lower() + t[2][1:])`;
+        }
+        set
+        {
+            `!p snip.rv = '_' + ''.join(t[2].[0].lower() + t[2][1:])` = value;
+        }
+    }
+
+
+# Commonly used objects; classes, methods, properties, etc.
+snippet ConsoleColor
+alias cc      
+options word
+    ConsoleColor
+
+snippet Console.WindowWidth
+alias cww     
+options word
+    Console.WindowWidth
+
+snippet Console.LargestWindowWidth
+alias clww    
+options word
+    Console.LargestWindowWidth
+
+snippet Console.ForegroundColor
+alias cfc     
+options word
+    Console.ForegroundColor
+
+snippet Console.BackgroundColor
+alias cbc     
+options word
+    Console.BackgroundColor
+
+snippet Console.CursorLeft
+alias ccl     
+options word
+    Console.CursorLeft
+
+snippet Console.CursorRight
+alias ccr     
+options word
+    Console.CursorRight
+
+snippet Console.WriteLine
+alias cwl     
+options word
+    Console.WriteLine (${1:output string})${0}
+
+snippet Console.WriteLine
+alias cwl"    
+options word
+    Console.WriteLine ("${1:output string}")${0}
+
+snippet Console.Write
+alias cw      
+options word
+    Console.Write (${1:output string})${0}
+
+snippet Console.Write
+alias cw"     
+options word
+    Console.Write ("${1:output string}")${0}
+
+snippet StringBuilder
+alias sb      
+options word
+    StringBuilder
+
+snippet CurrentCulture
+alias ccul    
+options word
+    CurrentCulture
+
+snippet InvariantCulture
+alias icul    
+options word
+    InvariantCulture
+
+snippet NumberStyles
+alias nsty    
+options word
+    NumberStyles
+
+snippet ToBase64String
+alias tb6s    
+options word
+    ToBase64String
+
+snippet FromBase64String
+alias fb6s    
+options word
+    FromBase64String
+
+snippet XmlDateTimeSerializationMode
+alias xdtsm   
+options word
+    XmlDateTimeSerializationMode
+
+snippet TypeConverter
+alias tcv     
+options word
+    TypeConverter
+
+snippet BitConverter
+alias bcv     
+options word
+    BitConverter
+
+snippet BitConverter.GetBytes
+alias bcv.gb  
+options word
+    BitConverter.GetBytes
+
+snippet System.Dynamic
+alias s.dy    
+options word
+    System.Dynamic
+
+snippet System.Globalization
+alias s.g     
+options word
+    System.Globalization
+
+snippet System.Numerics
+alias s.nu    
+options word
+    System.Numerics
+
+snippet System.Timers
+alias s.ti    
+options word
+    System.Timers
+
+snippet BigInteger
+alias bi      
+options word
+    BigInteger
+
+snippet ToString
+alias tost    
+options word
+    ToString(${1:arguments})%0
+
+snippet GetHashCode
+alias ghc     
+options word
+    GetHashCode
+
+snippet ProcessStartInfo
+alias psi     
+options word
+    ProcessStartInfo
+
+
+# Namespaces
+snippet System.Object
+alias s.o     
+options word
+    System.Object
+
+snippet System.ComponentModel
+alias s.cm    
+options word
+    System.ComponentModel
+
+snippet System.Drawing
+alias s.dr    
+options word
+    System.Drawing
+
+snippet System.Data
+alias s.d     
+options word
+    System.Data
+
+snippet System.IO
+alias s.i     
+options word
+    System.IO
+
+snippet System.Linq
+alias s.l     
+options word
+    System.Linq
+
+snippet System.Device.Location
+alias s.d.l   
+options word
+    System.Device.Location
+
+snippet System.Activities
+alias s.a     
+options word
+    System.Activities
+
+snippet System.AddIn
+alias s.ai    
+options word
+    System.Activities
+
+snippet System.CodeDom
+alias s.cd    
+options word
+    System.CodeDom
+
+snippet System.Collections
+alias s.c     
+options word
+    System.Collections
+
+snippet System.Configuration
+alias s.con   
+options word
+    System.Configuration
+
+snippet System.Deployment
+alias s.dep   
+options word
+    System.Deployment
+
+snippet System.Diagnostics
+alias s.dia   
+options word
+    System.Diagnostics
+
+snippet System.DirectoryServices
+alias s.ds    
+options word
+    System.DirectoryServices
+
+snippet System.EnterpriseServices
+alias s.es    
+options word
+    System.EnterpriseServices
+
+snippet System.IdentityModel
+alias s.im    
+options word
+    System.IdentityModel
+
+snippet System.Management
+alias s.ma    
+options word
+    System.Management
+
+snippet System.Media
+alias s.m     
+options word
+    System.Media
+
+snippet System.Messaging
+alias s.me    
+options word
+    System.Messaging
+
+snippet System.Net
+alias s.n     
+options word
+    System.Net
+
+snippet System.Printing
+alias s.p     
+options word
+    System.Printing
+
+snippet System.Reflection
+alias s.r     
+options word
+    System.Reflection
+
+snippet System.Resources
+alias s.re    
+options word
+    System.Resources
+
+snippet System.Runtime
+alias s.ru    
+options word
+    System.Collections
+
+snippet System.Security
+alias s.se    
+options word
+    System.Security
+
+snippet System.ServiceModel
+alias s.sm    
+options word
+    System.ServiceProcess
+
+snippet System.ServiceProcess
+alias s.sp    
+options word
+    System.Collections
+
+snippet System.Speech
+alias s.s     
+options word
+    System.Speech
+
+snippet System.Text
+alias s.t     
+options word
+    System.Text
+
+snippet System.Threading
+alias s.th    
+options word
+    System.Threading
+
+snippet System.Transactions
+alias s.tr    
+options word
+    System.Transactions
+
+snippet System.Web
+alias s.w     
+options word
+    System.Web
+
+snippet System.Windows
+alias s.wi    
+options word
+    System.Windows
+
+snippet System.Workflow
+alias s.wo    
+options word
+    System.Workflow
+
+snippet System.Xaml
+alias s.xa    
+options word
+    System.Xaml
+
+snippet System.Xml
+alias s.x     
+options word
+    System.Xml
+
+snippet System.Security.Cryptography
+alias s.se.c  
+options word
+    System.Security.Cryptography
+
+snippet System.Enum
+alias s.e     
+options word
+    System.Enum
+
+snippet System.Environment
+alias s.en    
+options word
+    System.Environment
+
+
+# Date & Time
+snippet DateTime
+alias dt      
+options word
+    DateTime
+
+snippet DateTimeOffset
+alias dto     
+options word
+    DateTimeOffset
+
+snippet TimeSpan
+alias ts      
+options word
+    TimeSpan
+
+snippet TimeZone
+alias tz      
+options word
+    TimeZone
+
+snippet TimeZoneInfo
+alias tzi     
+options word
+    TimeZoneInfo
+
+
+# Interfaces
+snippet IEnumerable
+alias ie      
+options word
+    IEnumerable
+
+snippet IEnumerable<T>
+alias ie<     
+options word
+    IEnumerable<${1:T}>${0}
+
+snippet IEnumerator
+alias ien     
+options word
+    IEnumerator
+
+snippet IEnumerator<T>
+alias ien<    
+options word
+    IEnumerator<${1:T}>${0}
+
+snippet IDisposable
+alias id      
+options word
+    IDisposable
+
+snippet IDisposable<T>
+alias id<     
+options word
+    IDisposeable<${1:T}>${0}
+
+snippet IFormattable
+alias ift     
+options word
+    IFormattable
+
+snippet IFormattable<T>
+alias if<     
+options word
+    IFormatteable<${1:T}>${0}
+
+snippet IFormatProvider
+alias ifp     
+options word
+    IFormatProvider
+
+snippet ICustomFormatter
+alias icf     
+options word
+    ICustomFormatter
+
+snippet IConvertible
+alias icv     
+options word
+    IConvertible
+
+snippet IStructuralEquatable
+alias ise     
+options word
+    IStructuralEquatable
+
+snippet IEquatable
+alias ieq     
+options word
+    IEquatable
+
+snippet IEquatable<T>
+alias ieq<    
+options word
+    IEquatable<T>
+
+snippet IComparable
+alias i><     
+options word
+    IComparable
+
+snippet IComparable<T>
+alias i><<    
+options word
+    IComparable<T>
+
+snippet IComparer
+alias icm     
+options word
+    IComparer
+
+snippet IComparer<T>
+alias icm<    
+options word
+    IComparer<T>
+
+
+# Format Providers
+snippet CultureInfo
+alias culi    
+options word
+    CultureInfo
+
+snippet NumberFormatInfo
+alias nfi     
+options word
+    NumberFormatInfo
+
+snippet DateTimeFormatInfo
+alias dtfi    
+options word
+    DateTimeFormatInfo
+
+snippet NumberStyles
+alias ns      
+options word
+    NumberStyles
+
+snippet DateTimeStyles
+alias dts     
+options word
+    DateTimeStyles
+
+
+# IL and Dynamic Code Generation
+snippet IL_emit,_no_arguments
+alias gem     
+    ${1:gen}.Emit(OpCodes.${2:opcode});
+
+snippet IL_emit,_one_argument
+alias gem1    
+    ${1:gen}.Emit(OpCodes.${2:opcode}, ${3:arg});
+
+snippet IL_emit_-_load_local_variable
+alias gemld   
+    ${1:gen}.Emit(OpCodes.Ldloc, ${2:arg});
+
+snippet IL_emit_-_store_local_variable
+alias gemst   
+    ${1:gen}.Emit(OpCodes.Stloc, ${2:arg});
+
+snippet IL_emit_-_writeline
+alias gewl    
+    ${1:gen}.EmitWriteLine(${2:stringVar});
+
+snippet create_dynamic_method
+alias dym     
+options head
+    var ${1:dynMeth} = new DynamicMethod(
+        "${2:Method name}",
+        ${3:Return type - e.g. typeof(int) or null},
+        ${4:Parameter type(s) - e.g. new[] { typeof(int), typeof(int) } or null},
+        ${5:Owner type or typeof(void)}
+        );
+    ILGenerator ${6:gen} = $1.GetILGenerator();
+
+    ${0}
+
+    $6.Emit(OpCodes.Ret);
+    $1.Invoke(${7:object}, ${8:array of arguments});
+
+snippet create_simple_dynamic_method
+alias dym0    
+options head
+    var ${1:dynMeth} = new DynamicMethod( "${2:Method name}", null, null, typeof (void));
+    ILGenerator ${6:gen} = $1.GetILGenerator();
+
+    ${0}
+
+    $6.Emit(OpCodes.Ret);
+    $1.Invoke(null, null);
+
+snippet create_dynamic_try/catch
+alias dtc     
+options head
+    MethodInfo ${1:getMessageProp} = typeof( ${2:Exception} )
+                                     .GetProperty( "Message" ).GetGetMethod();
+    MethodInfo ${3:writeLineString} = typeof( Console ).GetMethod ( "WriteLine" ),
+                                                new[] { typeof (object) } );
+    ${4:gen}.BeginExceptionBlock();
+        ConstructorInfo ${5:ci} = typeof ($2.GetConstructor(
+                                                      new ${6:Type[0]} );
+        $4.Emit( OpCodes.Newobj, $5 );
+        $4.Emit( OpCodes.Throw );
+    $4.BeginCatchBlock( typeof( $2 ) );
+        $4.Emit( OpCodes.Callvirt, $1 )
+        $4.Emit( OpCodes.Call, $3 )
+    $4.EndExceptionBlock();
+    ${0}
+
+snippet create_dynamic_try/finally
+alias dtf     
+options head
+    ${1:gen}.BeginExceptionBlock();
+        ${2:dynamic code block}
+    $1.BeginFinallyBlock();
+        $1.EmitWriteLine( "Finally" );
+    $1.EndExceptionBlock();
+    ${0}
+
+snippet create_dynamic_try/catch/catch
+alias dtcc    
+options head
+    MethodInfo ${1:getMessageProp1} = typeof( ${2:Exception} )
+                                     .GetProperty( "Message" ).GetGetMethod();
+    MethodInfo ${3:getMessageProp2} = typeof( ${4:Exception} )
+                                     .GetProperty( "Message" ).GetGetMethod();
+    MethodInfo ${5:writeLineString} = typeof( Console ).GetMethod ( "WriteLine" ),
+                                                new[] { typeof (object) } );
+    ${6:gen}.BeginExceptionBlock();
+        ConstructorInfo ${7:ci} = typeof ($2.GetConstructor(
+                                                      new ${8:Type[0]} );
+        $6.Emit( OpCodes.Newobj, $7 );
+        $6.Emit( OpCodes.Throw );
+    $6.BeginCatchBlock( typeof( $2 ) );
+        $6.Emit( OpCodes.Callvirt, $1 )
+        $6.Emit( OpCodes.Call, $5 )
+    $6.BeginCatchBlock( typeof( $4 ) );
+        $6.Emit( OpCodes.Callvirt, $3 )
+        $6.Emit( OpCodes.Call, $5 )
+    $6.EndExceptionBlock();
+    ${0}
+
+snippet create_dynamic_try/catch/catch/catch
+alias dtccc   
+options head
+    MethodInfo ${1:getMessageProp1} = typeof( ${2:Exception} )
+                                     .GetProperty( "Message" ).GetGetMethod();
+    MethodInfo ${3:getMessageProp2} = typeof( ${4:Exception} )
+                                     .GetProperty( "Message" ).GetGetMethod();
+    MethodInfo ${5:getMessageProp2} = typeof( ${6:Exception} )
+                                     .GetProperty( "Message" ).GetGetMethod();
+    MethodInfo ${7:writeLineString} = typeof( Console ).GetMethod ( "WriteLine" ),
+                                                new[] { typeof (object) } );
+    ${8:gen}.BeginExceptionBlock();
+        ConstructorInfo ${9:ci} = typeof ($2.GetConstructor(
+                                                      new ${10:Type[0]} );
+        $8.Emit( OpCodes.Newobj, $7 );
+        $8.Emit( OpCodes.Throw );
+    $8.BeginCatchBlock( typeof( $2 ) );
+        $8.Emit( OpCodes.Callvirt, $1 )
+        $8.Emit( OpCodes.Call, $7 )
+    $8.BeginCatchBlock( typeof( $4 ) );
+        $8.Emit( OpCodes.Callvirt, $3 )
+        $8.Emit( OpCodes.Call, $7 )
+    $8.BeginCatchBlock( typeof( $6 ) );
+        $8.Emit( OpCodes.Callvirt, $5 )
+        $8.Emit( OpCodes.Call, $7 )
+    $8.EndExceptionBlock();
+    ${0}
+
+snippet create_dynamic_try/catch/finally
+alias dtcf    
+options head
+    MethodInfo ${1:getMessageProp} = typeof( ${2:Exception} )
+                                     .GetProperty( "Message" ).GetGetMethod();
+    MethodInfo ${3:writeLineString} = typeof( Console ).GetMethod ( "WriteLine" ),
+                                                new[] { typeof (object) } );
+    ${4:gen}.BeginExceptionBlock();
+        ConstructorInfo ${5:ci} = typeof ($2.GetConstructor(
+                                                      new ${6:Type[0]} );
+        $4.Emit( OpCodes.Newobj, $5 );
+        $4.Emit( OpCodes.Throw );
+    $4.BeginCatchBlock( typeof( $2 ) );
+        $4.Emit( OpCodes.Callvirt, $1 )
+        $4.Emit( OpCodes.Call, $3 )
+    $4.BeginFinallyBlock();
+        $4.EmitWriteLine( "Finally" );
+    $4.EndExceptionBlock();
+    ${0}
+
+snippet create_dynamic_try/catch/catch/finally
+alias dtccf   
+options head
+    MethodInfo ${1:getMessageProp1} = typeof( ${2:Exception} )
+                                     .GetProperty( "Message" ).GetGetMethod();
+    MethodInfo ${3:getMessageProp2} = typeof( ${4:Exception} )
+                                     .GetProperty( "Message" ).GetGetMethod();
+    MethodInfo ${5:writeLineString} = typeof( Console ).GetMethod ( "WriteLine" ),
+                                                new[] { typeof (object) } );
+    ${6:gen}.BeginExceptionBlock();
+        ConstructorInfo ${7:ci} = typeof ($2.GetConstructor(
+                                                      new ${8:Type[0]} );
+        $6.Emit( OpCodes.Newobj, $7 );
+        $6.Emit( OpCodes.Throw );
+    $6.BeginCatchBlock( typeof( $2 ) );
+        $6.Emit( OpCodes.Callvirt, $1 )
+        $6.Emit( OpCodes.Call, $5 )
+    $6.BeginCatchBlock( typeof( $4 ) );
+        $6.Emit( OpCodes.Callvirt, $3 )
+        $6.Emit( OpCodes.Call, $5 )
+    $6.BeginFinallyBlock();
+        $6.EmitWriteLine( "Finally" );
+    $6.EndExceptionBlock();
+    ${0}
+
+snippet create_dynamic_try/catch/catch/catch/finally
+alias dtcccf  
+options head
+    MethodInfo ${1:getMessageProp1} = typeof( ${2:Exception} )
+                                     .GetProperty( "Message" ).GetGetMethod();
+    MethodInfo ${3:getMessageProp2} = typeof( ${4:Exception} )
+                                     .GetProperty( "Message" ).GetGetMethod();
+    MethodInfo ${5:getMessageProp2} = typeof( ${6:Exception} )
+                                     .GetProperty( "Message" ).GetGetMethod();
+    MethodInfo ${7:writeLineString} = typeof( Console ).GetMethod ( "WriteLine" ),
+                                                new[] { typeof (object) } );
+    ${8:gen}.BeginExceptionBlock();
+        ConstructorInfo ${9:ci} = typeof ($2.GetConstructor(
+                                                      new ${10:Type[0]} );
+        $8.Emit( OpCodes.Newobj, $7 );
+        $8.Emit( OpCodes.Throw );
+    $8.BeginCatchBlock( typeof( $2 ) );
+        $8.Emit( OpCodes.Callvirt, $1 )
+        $8.Emit( OpCodes.Call, $7 )
+    $8.BeginCatchBlock( typeof( $4 ) );
+        $8.Emit( OpCodes.Callvirt, $3 )
+        $8.Emit( OpCodes.Call, $7 )
+    $8.BeginCatchBlock( typeof( $6 ) );
+        $8.Emit( OpCodes.Callvirt, $5 )
+        $8.Emit( OpCodes.Call, $7 )
+    $8.BeginFinallyBlock();
+        $8.EmitWriteLine( "Finally" );
+    $8.EndExceptionBlock();
+    ${0}
+
+

@@ -1,0 +1,18 @@
+    # Begin pollen.snippets
+
+    # Snippets for the pollen documentation language
+
+snippet header
+alias hdr         
+options head
+    #lang pollen
+
+
+snippet define
+alias def         
+options head
+    ◊(define ${1:identifier} ${2:replacement})
+    ${0}
+
+
+

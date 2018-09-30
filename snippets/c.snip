@@ -1,0 +1,299 @@
+# Begin c.snippets
+
+# Snippets for coding in C
+
+snippet if_statement
+alias if      
+options head
+    if (${1:condition})
+    {
+        ${2:block}
+    }
+    ${0}
+
+snippet simple_for_loop_counter
+alias fo      
+options head
+    for (int ${1:i} = 0; $1 < ${2:range}; ++$1)
+    {
+        ${0}
+    }
+
+snippet general_for_setup
+alias for     
+options head
+    for (${1:initialize}; ${2:test}; ${3:alter})
+    {
+        ${0}
+    }
+
+snippet do-while_loop
+alias do      
+options head
+    do
+    {
+        ${0}
+    } while (${1:test});
+
+snippet printf
+alias pf      
+options head
+    printf("${1:output}", ${2:variables});
+    ${0}
+
+snippet printf,_add_newline
+alias pff     
+options head
+    printf("${1:output}\n", ${2:variables});
+    ${0}
+
+snippet printf_string_literal
+alias pfs     
+options head
+    printf("${1:output}");
+    ${0}
+
+snippet printf_string_literal,_newline
+alias pfss    
+options head
+    printf("${1:output}\n");
+    ${0}
+
+snippet scanf,_single_integer
+alias si      
+options head
+scanf("%d", &${1:storage var});
+    ${0}
+
+snippet create_main_function,_no_args
+alias ma      
+options head
+int main(void)
+    {
+        ${0}
+        return 0;
+    }
+
+
+snippet create_main_function,_with_args
+alias maa     
+options head
+int main(int argc, char *argv[])
+    {
+        ${0}
+        return 0;
+    }
+
+
+snippet single_line_comment
+alias //      
+    // ${1:Enter_comment_here}
+
+
+snippet basic_comment
+alias /*      
+    /* ${1:Enter_comment_here} */${0}
+
+snippet multi-line_comment
+alias /**     
+    /*
+     * ${1:Enter_comment_here}
+     */${0}
+
+snippet simple_heading
+alias hdr     
+options head
+    // `!p snip.rv = fn`
+    // ${1:description of program}
+    ${0}
+
+snippet full_heading
+alias hdrr    
+options head
+    /*
+     * File   : `!p snip.rv = snip.fn`
+     * Program: ${1:`!p snip.rv = snip.basename`}
+     * Purpose: ${2:What is this?}
+     * Author : Tommy Lincoln <pajamapants3000@gmail.com>
+     * License: ${3:None!}
+     * Notes  : ${4:Notes on successful compilation}
+     * Created: `date +%m/%d/%Y`
+     * Updated: `date +%m/%d/%Y`
+     */
+    ${0}
+
+snippet blank_line
+alias bl      
+options head
+    printf("\n");
+
+
+    # #includes
+snippet #include_from_std_headers
+alias in      
+options head
+    #include <${1:header}>
+    ${0}
+
+snippet #include_from_local_headers
+alias inn     
+options head
+    #include "${1:header}"
+    ${0}
+
+snippet include_stdio
+alias ii      
+options head
+    #include <stdio.h>
+
+
+snippet include_string
+alias ist     
+options head
+    #include <string.h>
+
+
+snippet include_stdlib
+alias ili     
+options head
+    #include <stdlib.h>
+
+
+snippet include_math
+alias im      
+options head
+    #include <math.h>
+
+
+snippet include_time
+alias it      
+options head
+    #include <time.h>
+
+
+snippet include_stdbool
+alias ib      
+options head
+    #include <stdbool.h>
+
+
+snippet include_ctype
+alias ic      
+options head
+    #include <ctype.h>
+
+
+snippet #include_stddef
+alias isdd    
+options head
+    #include <stddef.h>
+
+
+snippet #include_sys/time
+alias isyt    
+options head
+    #include <sys/time.h>
+
+
+snippet #include_getopt
+alias igo     
+options head
+    #include <getopt.h>
+
+
+snippet #include_unistd
+alias iu      
+options head
+    #include <unistd.h>
+
+
+snippet #include_ncurses
+alias icur    
+options head
+    #include <ncurses.h>
+
+
+snippet #include_panel
+alias ipan    
+options head
+    #include <ncurses.h>
+    #include <panel.h>
+
+
+snippet #include_menu
+alias imen    
+options head
+    #include <ncurses.h>
+    #include <menu.h>
+
+
+snippet #include_form
+alias ifor    
+options head
+    #include <ncurses.h>
+    #include <form.h>
+
+
+snippet debug_line;_simple_message_with_filename_and_line_number
+alias db      
+options head
+    printf("testing - file: %s - line: %d\n", __FILE__, __LINE__);
+
+
+snippet debug_line;_var_value_with_filename_and_line_number
+alias db1     
+options head
+        printf("file %s - line %d: ${1:variable} = %${2:formspec}\n", \
+                __FILE__, __LINE__, $1);
+        ${0}
+
+snippet ifdef_DEBUG
+alias idb     
+options head
+        #ifdef DEBUG
+            ${0}
+        #endif // (DEBUG)
+
+snippet function_definition_description
+alias fdf     
+options head
+        /*********************************************************************
+         * ${1:function name}: $2
+         *********************************************************************/
+        ${0}
+
+snippet create_header_guard_to_wrap_code
+alias grd     
+        #ifndef `!p snip.rv = snip.fn.replace('.', '_').upper()`
+        #define `!p snip.rv = snip.fn.replace('.', '_').upper()`
+
+        ${0}
+
+        #endif  // def `!p snip.rv = snip.fn.replace('.', '_').upper()`
+
+        # #defines
+snippet macro_to_determine_maximum_of_two_values
+alias dmx     
+options head
+        #define max(x, y) ((x) > (y) ? (x) : (y))
+
+        {0}
+snippet macro_to_determine_maximum_of_two_values
+alias dmn     
+options head
+        #define min(x, y) ((x) < (y) ? (x) : (y))
+
+        {0}
+snippet macro_to_determine_if_character_is_an_uppercase_letter
+alias dcu     
+options head
+        #define cupper(x) (65 <= (x) && (x) <= 90 ? 1 : 0)
+
+        {0}
+snippet macro_to_determine_if_character_is_an_lowercase_letter
+alias dcl     
+options head
+        #define clower(x) (97 <= (x) && (x) <= 122 ? 1 : 0)
+
+        {0}
+# End c.snip

@@ -212,6 +212,7 @@ smap j<Tab>     <Plug>(neosnippet_expand)
 xmap j<Tab>     <Plug>(neosnippet_expand_target)
 imap <C-j>     <Plug>(neosnippet_jump)
 smap <C-j>     <Plug>(neosnippet_jump)
+let g:neosnippet#snippets_directory = g:NeovimConfigurationDirectory.'/snippets'
 
 " SuperTab like snippets' behavior.
 "imap <expr><TAB>
