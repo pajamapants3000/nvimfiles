@@ -250,6 +250,8 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
 " * Shougo/deoplete.nvim * "
 let g:deoplete#enable_at_startup = 1
+let g:python3_host_prog = "C:/Python35/python.exe"
+let g:python_host_prog = "C:/Python27/python.exe"
 
 " * scrooloose/syntastic * "
 set statusline+=%#warningmsg#
