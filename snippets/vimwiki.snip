@@ -10,7 +10,7 @@ alias br
 
 # vimwiki markup
 snippet Section_header
-alias hdrr    
+alias hdrr
 options head
     %title ${1:Section Title} | ${2:Parent Title}
 
@@ -18,7 +18,7 @@ options head
 
 
 snippet Table_of_contents_header
-alias hdr     
+alias hdr
 options head
     %title ${1:Title of Listing} | ${2:Parent Title}
 
@@ -97,7 +97,7 @@ options head
     cp${0}p
     }}}
 
-snippet C++_block
+snippet C#_block
 alias {sharp  
 options head
     {{{sharp
@@ -230,4 +230,57 @@ options head
     ${0}
     }}$
 
+snippet project template
+abbr project_template
+alias pt project
+options head
+    %title ${1:MyProject} | Projects
+
+    ${2:<A one-line summary of the project>}
+
+    * [[Concept]]
+    * [[SuggestionBox]]
+    * [[Factory/index|Factory]]
+    * [[Knowledge]]
+    * [[Dreams]]
+
+snippet new task
+abbr new_task
+alias newt task newtask
+options head
+    %title ${1:TaskName} (Task ${2:TaskId}) | Tasks | ProjectName
+
+        = Contents =
+        - [[#Type|Type]]
+        - [[#Description|Description]]
+        - [[#User Stories|User Stories]]
+        - [[#Test Cases|Test Cases]]
+            - [[#Test Cases#Unit Test|Unit Test]]
+            - [[#Test Cases#UI|UI]]
+        - [[#Related Tasks|Related Tasks]]
+            - [[#Related Tasks#Parent Task|Parent Task]]
+            - [[#Related Tasks#Sub-Tasks|Sub-Tasks]]
+            - [[#Related Tasks#Dependencies|Dependencies]]
+        - [[#Road Blocks|Road Blocks]]
+        - [[#Research|Research]]
+        - [[#Program Design|Program Design]]
+        - [[#Work Log|Work Log]]
+        - [[#Progress Report|Progress Report]]
+
+    = Type =
+    = Description =
+    ${0}
+    = User Stories =
+    = Test Cases =
+    == Unit Test ==
+    == UI ==
+    = Related Tasks =
+    == Parent Task ==
+    == Sub-Tasks ==
+    == Dependencies ==
+    = Road Blocks =
+    = Research =
+    = Program Design =
+    = Work Log =
+    = Progress Report =
 

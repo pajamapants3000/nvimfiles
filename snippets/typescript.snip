@@ -1,0 +1,26 @@
+# Begin typescript.snip
+
+# Snippets for TypeScript files
+
+snippet     im
+abbr        import
+options     head
+    import { ${1:ClassNames} } from '${2:SourceComponent}';
+    ${0}
+
+snippet     comp
+abbr        component
+options     head
+    @Component({
+      selector: 'app-${1:ComponentNameToBeLowercased}',
+      templateUrl: '${1}.component.html',
+      styleUrls: ['${1}.component.css'${2:, additional styles}]
+    })
+    export class ${1} implements OnInit {
+
+    constructor() { }
+
+    ngOnInit() { }
+
+    }
+

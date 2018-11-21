@@ -32,6 +32,7 @@ let g:filetype_aliases['sql']         = 'sql'
 let g:filetype_aliases['html']        = 'html'
 let g:filetype_aliases['js']          = 'javascript'
 let g:filetype_aliases['javascript']  = 'javascript'
+let g:filetype_aliases['ts']          = 'typescript'
 let g:filetype_aliases['vbs']         = 'vbs'
 let g:filetype_aliases['vb']          = 'vb'
 let g:filetype_aliases['xaml']        = 'xaml'
@@ -109,6 +110,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'junegunn/fzf'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/denite.nvim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/context_filetype.vim'
@@ -121,6 +123,7 @@ Plug 'scrooloose/syntastic'
 
 " * Syntax Highlighting * "
 Plug 'vim-jp/vim-cpp'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'OrangeT/vim-csharp'
 Plug 'yuratomo/dotnet-complete'
 Plug 'rust-lang/rust.vim'
@@ -130,6 +133,10 @@ Plug 'vim-scripts/aspnet.vim'
 Plug 'sirtaj/vim-openscad'
 Plug 'PProvost/vim-ps1'
 Plug 'vim-scripts/fitnesse.vim'
+
+" * Additional Language Support * "
+Plug 'pajamapants3000/nvim-typescript', {'do': './install.bat'}
+
 
 " * Theme * "
 Plug 'pajamapants3000/vim-colorstepper'
@@ -234,9 +241,11 @@ imap <expr><CR>
 set hidden
 
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'go': ['go-langserver'],
+    \ 'cpp': ['clangd'],
     \ 'python': ['pyls'],
     \ }
 "    \ 'lua': ['lua-lsp'],
@@ -250,7 +259,7 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
 " * Shougo/deoplete.nvim * "
 let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = "C:/Python35/python.exe"
+let g:python3_host_prog = "C:/Python36/python.exe"
 let g:python_host_prog = "C:/Python27/python.exe"
 
 " * scrooloose/syntastic * "
@@ -264,6 +273,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " * pajamapants3000/vimwiki * "
+" default wiki
 let wiki = {}
 " taken from default dictionary; comment out defaults and add any changes
 let wiki.maxhi = 0
@@ -289,13 +299,41 @@ let wiki.ext = '.wiki'
 let wiki.temp = 0
 let wiki.list_margin = -1
 let wiki.diary_rel_path = 'diary/'
+" project wikis - for keeping project wiki with source code repository
+let project_name = 'TimeIn'
+let wiki_project_timein = {}
+" taken from default dictionary; comment out defaults and add any changes
+let wiki_project_timein.maxhi = 0
+let wiki_project_timein.css_name = 'style.css'
+let wiki_project_timein.auto_export = 1
+let wiki_project_timein.diary_index = 'index'
+let wiki_project_timein.template_default = 'default'
+let wiki_project_timein.auto_toc = 1
+let wiki_project_timein.auto_tags = 0
+let wiki_project_timein.nested_syntaxes = g:filetype_aliases
+let wiki_project_timein.diary_sort = 'desc'
+let wiki_project_timein.path = 'C:/Users/otrip/source/repos/' . project_name . '/wiki/'
+let wiki_project_timein.path_html = wiki_project_timein.path . '../wiki_html/'
+let wiki_project_timein.template_path = wiki_project_timein.path . 'templates/'
+let wiki_project_timein.diary_link_fmt = '%Y-%m-%d'
+let wiki_project_timein.template_ext = '.tpl'
+let wiki_project_timein.syntax = 'default'
+let wiki_project_timein.custom_wiki2html = ''
+let wiki_project_timein.automatic_nested_syntaxes = 1
+let wiki_project_timein.index = 'index'
+let wiki_project_timein.diary_header = 'Diary'
+let wiki_project_timein.ext = '.wiki'
+let wiki_project_timein.temp = 0
+let wiki_project_timein.list_margin = -1
+let wiki_project_timein.diary_rel_path = 'diary/'
+" an attempt to write acceptance tests using vimwiki
 let wiki_fitnesse = {}
 let wiki_fitnesse.css_name = 'style.css'
 let wiki_fitnesse.path = 'C:/Fitnesse/FitnesseRoot'
 let wiki_fitnesse.syntax = 'fitnesse'
 let wiki_fitnesse.ext = '.wiki'
 let g:vimwiki_folding = 'expr'
-let g:vimwiki_list = [wiki, wiki_fitnesse]
+let g:vimwiki_list = [wiki, wiki_project_timein, wiki_fitnesse]
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_use_calendar = 1
 let g:vimwiki_html_header_numbering = 0
@@ -341,6 +379,21 @@ nnoremap <leader>wl<leader>t
             \ :<c-u>.,$s/\*<space>\[\[\(.*\)[^-a-zA-Z0-9./_]\(.*\)<bar>/*<space>[[\1_\2<bar>/<cr>
 nmap <leader>wl<leader>r
             \ <c-o><leader>wl<leader>t
+
+" Quick folder jumps
+nnoremap <Leader>dh :<c-u>cd ~<cr>
+nnoremap <Leader>dr :<c-u>cd ~/source/repos<cr>
+nnoremap <Leader>dw :<c-u>cd ~/source/workspace<cr>
+
+" vimwiki-like jumping around
+nnoremap <BS> :<c-u>MBEbp<CR>
+nnoremap <Space> :<c-u>MBEbn<CR>
+
+" arrow keys are redundant, so use them for something else - changing window focus
+nnoremap <Up> <c-w><c-k>
+nnoremap <Down> <c-w><c-j>
+nnoremap <Left> <c-w><c-h>
+nnoremap <Right> <c-w><c-l>
 
 " *** AutoCommands *** "
 " Toggle number/relativenumber when entering/leaving buffer - more useful display
