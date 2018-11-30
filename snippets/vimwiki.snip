@@ -1,0 +1,286 @@
+# Begin vimwiki.snippets
+
+# Snippets for writing vimwiki pages
+
+# Include markup that was separated out for use in multiple contexts: (huh?)
+snippet line_break
+alias br
+    <br />${0}
+
+
+# vimwiki markup
+snippet Section_header
+alias hdrr
+options head
+    %title ${1:Section Title} | ${2:Parent Title}
+
+        = Contents =
+
+
+snippet Table_of_contents_header
+alias hdr
+options head
+    %title ${1:Title of Listing} | ${2:Parent Title}
+
+    * 
+
+snippet emphasis
+alias --      
+    _${1:emphasized text}_${0}
+
+snippet auto-emphasis
+alias -x-
+    _${1:emphasized text}_${0}
+
+snippet strong
+alias **      
+    *${1:strong text}*${0}
+
+snippet auto-strong
+alias *x*
+    *${1:strong text}*${0}
+
+snippet strikeout
+alias ~~      
+    ~~${1:strikeout text}~~${0}
+
+snippet auto-strikeout
+alias ~x~
+    ~~${1:strikeout text}~~${0}
+
+snippet code
+alias ``      
+    `${1:code}`${0}
+
+snippet auto-code
+alias `x`
+    \`${1:code}\`${0}
+
+snippet superscript
+alias ^^      
+    ^${1:super}^${0}
+
+snippet auto-superscript
+alias ^x^
+    ^${1:super}^${0}
+
+snippet subscript
+alias ,,      
+    ,,${1:sub},,${0}
+
+snippet auto-subscript
+alias ,x,
+    ,,${1:sub},,${0}
+
+snippet mathematical_formula
+alias $$      
+    \$${1:mathematical formula}\$${0}
+
+snippet auto-create_mathematical_formula
+alias $x$
+    \$${1:mathematical formula}\$${0}
+
+snippet nested_syntax_block
+alias {{{     
+options head
+    {{{${1:syntax}
+    ${0}
+    }}}
+
+# After expanding a syntax block, use <leader>ff to change the filetype to that
+# language, providing any available plugins and completions for that language
+# When finished, use <leader>fv to return to vimwiki filetype.
+snippet C++_block
+alias {cpp    
+options head
+    {{{cpp
+    cp${0}p
+    }}}
+
+snippet C#_block
+alias {sharp  
+options head
+    {{{sharp
+    shar${0}p
+    }}}
+
+snippet C_block
+alias {c      
+options head
+    {{{c
+    c${0}
+    }}}
+
+snippet Python_block
+alias {python 
+options head
+    {{{python
+    pyth${0}on
+    }}}
+
+snippet Rust_block
+alias {rust   
+options head
+    {{{rust
+    rus${0}t
+    }}}
+
+snippet Go_block
+alias {go     
+options head
+    {{{go
+    g${0}o
+    }}}
+
+snippet posix_shell/bash_block
+alias {sh     
+options head
+    {{{sh
+    s${0}h
+    }}}
+
+snippet html_block
+alias {html   
+options head
+    {{{html
+    htm${0}l
+    }}}
+
+snippet JavaScript_block
+alias {js     
+options head
+    {{{js
+    j${0}s
+    }}}
+
+snippet PowerShell_block
+alias {ps1    
+options head
+    {{{ps1
+    p${0}s1
+    }}}
+
+snippet assembly_block
+alias {asm    
+options head
+    {{{asm
+    as${0}m
+    }}}
+
+snippet HLA_block
+alias {hla    
+options head
+    {{{hla
+    hl${0}a
+    }}}
+
+snippet makefile_block
+alias {make   
+options head
+    {{{make
+    mak${0}e
+    }}}
+
+snippet Lua_block
+alias {lua    
+options head
+    {{{lua
+    lu${0}a
+    }}}
+
+snippet toml_block
+alias {toml   
+options head
+    {{{toml
+    tom${0}l
+    }}}
+
+snippet Racket_block
+alias {rkt    
+options head
+    {{{rkt
+    rk${0}t
+    }}}
+
+snippet SQL_block
+alias {sql    
+options head
+    {{{sql
+    sq${0}l
+    }}}
+
+snippet XML_block
+alias {xml    
+options head
+    {{{xml
+    xm${0}l
+    }}}
+
+snippet XAML_block
+alias {xaml    
+options head
+    {{{xaml
+    xam${0}l
+    }}}
+
+snippet mathematical_formulae_block
+alias {$      
+options head
+    {{$
+    ${0}
+    }}$
+
+snippet project template
+abbr project_template
+alias pt project
+options head
+    %title ${1:MyProject} | Projects
+
+    ${2:<A one-line summary of the project>}
+
+    * [[Concept]]
+    * [[SuggestionBox]]
+    * [[Factory/index|Factory]]
+    * [[Knowledge]]
+    * [[Dreams]]
+
+snippet new task
+abbr new_task
+alias newt task newtask
+options head
+    %title ${1:TaskName} (Task ${2:TaskId}) | Tasks | ProjectName
+
+        = Contents =
+        - [[#Type|Type]]
+        - [[#Description|Description]]
+        - [[#User Stories|User Stories]]
+        - [[#Test Cases|Test Cases]]
+            - [[#Test Cases#Unit Test|Unit Test]]
+            - [[#Test Cases#UI|UI]]
+        - [[#Related Tasks|Related Tasks]]
+            - [[#Related Tasks#Parent Task|Parent Task]]
+            - [[#Related Tasks#Sub-Tasks|Sub-Tasks]]
+            - [[#Related Tasks#Dependencies|Dependencies]]
+        - [[#Road Blocks|Road Blocks]]
+        - [[#Research|Research]]
+        - [[#Program Design|Program Design]]
+        - [[#Work Log|Work Log]]
+        - [[#Progress Report|Progress Report]]
+
+    = Type =
+    = Description =
+    ${0}
+    = User Stories =
+    = Test Cases =
+    == Unit Test ==
+    == UI ==
+    = Related Tasks =
+    == Parent Task ==
+    == Sub-Tasks ==
+    == Dependencies ==
+    = Road Blocks =
+    = Research =
+    = Program Design =
+    = Work Log =
+    = Progress Report =
+

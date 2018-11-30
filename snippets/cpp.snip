@@ -1,0 +1,527 @@
+# C++ snippets
+
+# Include all C snippets, remove conflicts
+extends c
+delete bl ist ii ma
+
+snippet int_main()
+alias ma      
+options head
+    int main()
+    {
+        ${0}
+        return 0;
+    }
+
+snippet common_'using'_abbreviations
+alias usi     
+options head
+    using std::cin;     using std::cout;
+    using std::string;  using std::endl;
+
+
+    # 'using' statement
+snippet using_std::...
+alias us      
+    using std::${1:stdlib_attr};${0}
+
+snippet print_to_stdout
+alias so      
+options head
+    std::cout << ${1:string_var};
+    {0}
+
+snippet read_from_sdtin
+alias si      
+options head
+    std::cin >> ${1:string_var}
+    {0}
+
+
+snippet print_string_literal_to_stdout
+alias soo     
+options head
+    std::cout << "${1:string}";
+    {0}
+
+snippet blank_line
+alias bl      
+options head
+    std::cout << std::endl;
+    {0}
+
+snippet include_all_typical_headers
+alias inc     
+options head
+    #include <iostream>
+    #include <ios>
+    #include <iomanip>
+    #include <string>
+    #include <vector>
+    #include <algorithm>
+
+    {0}
+snippet include_iostream
+alias ii      
+options head
+    #include <iostream>
+
+    {0}
+snippet include_string
+alias ist     
+options head
+    #include <string>
+
+    {0}
+snippet include_algorithm
+alias ial     
+options head
+    #include <algorithm>
+
+    {0}
+snippet include_vector
+alias iv      
+options head
+    #include <vector>
+
+    {0}
+snippet include_list
+alias il      
+options head
+    #include <list>
+
+    {0}
+snippet include_map
+alias im      
+options head
+    #include <map>
+
+    {0}
+snippet include_ios
+alias ios     
+options head
+    #include <ios>
+
+    {0}
+snippet include_iomanip
+alias iom     
+options head
+    #include <iomanip>
+
+    {0}
+snippet include_stdexcept
+alias iex     
+options head
+    #include <stdexcept>
+
+    {0}
+snippet include_cstddef
+alias icd     
+options head
+    #include <cstddef>
+
+    {0}
+snippet include_cmath
+alias icm     
+options head
+    #include <cmath>
+
+    {0}
+snippet include_cctype
+alias icc     
+options head
+    #include <cctype>
+
+    {0}
+snippet include_cassert
+alias ica     
+options head
+    #include <cassert>
+
+    {0}
+snippet include_iterator
+alias iit     
+options head
+    #include <iterator>
+
+    {0}
+snippet using_vector
+alias uv      
+    using std::vector;${0}
+
+snippet using_list
+alias ul      
+    using std::list;${0}
+
+snippet using_string
+alias ust     
+    using std::string;${0}
+
+snippet using_map
+alias um      
+    using std::map;${0}
+
+snippet using_cout
+alias uco     
+    using std::cout;${0}
+
+snippet using_cin
+alias uci     
+    using std::cin;${0}
+
+snippet using_endl
+alias uel     
+    using std::endl;${0}
+
+snippet using_sort
+alias uso     
+    using std::sort;${0}
+
+snippet using_streamsize
+alias uss     
+    using std::streamsize;${0}
+
+snippet using_setprecision
+alias usp     
+    using std::setprecision;${0}
+
+snippet using_max
+alias umx     
+    using std::max;${0}
+
+snippet using_min
+alias umn     
+    using std::min;${0}
+
+snippet function
+alias fn      
+options head
+    ${1:type} ${2:name}(${3:parameters})/*{{{*/
+    {
+        ${0}
+    }
+    /*}}}*/
+
+snippet member_function
+alias mfn     
+options head
+    ${1:type} ${2:Class}::${3:name}(${4:parameters})/*{{{*/
+    {
+        ${0}
+    }
+    /*}}}*/
+
+    #************************************
+    # Qt-specific snippets
+snippet main_fn_for_Qt
+alias qma     
+options head
+    int main(int argc, char* argv[])
+    {
+        QApplication app(argc, argv);
+        ${0}
+        return app.exec();
+    }
+
+
+snippet connect_signal/slot
+alias qcon    
+options head
+    connect(${1:sender}, SIGNAL(${2:clicked}()),${3:receiver}, SLOT(${4:slot}()));
+    ${0}
+
+snippet include_QApplication
+alias iqa     
+options head
+    #include <QApplication>
+
+    {0}
+snippet include_QtGui
+alias iqg     
+options head
+    #include <QtGui>
+
+    {0}
+snippet include_QDialog
+alias iqd     
+options head
+    #include <QDialog>
+
+    {0}
+snippet include_QHBoxLayout
+alias iqhbl   
+options head
+    #include <QHBoxLayout>
+
+    {0}
+snippet include_QVBoxLayout
+alias iqvbl   
+options head
+    #include <QVBoxLayout>
+
+    {0}
+snippet include_QGridLayout
+alias iqgl    
+options head
+    #include <QVBoxLayout>
+
+    {0}
+snippet include_QSlider
+alias iqsl    
+options head
+    #include <QSlider>
+
+    {0}
+snippet include_QSpinBox
+alias iqsb    
+options head
+    #include <QSpinBox>
+
+    {0}
+snippet include_QPushButton
+alias iqpb    
+options head
+    #include <QPushButton>
+
+    {0}
+snippet include_QLabel
+alias iql     
+options head
+    #include <QLabel>
+
+    {0}
+snippet include_QMainWindow
+alias iqmw    
+options head
+    #include <QMainWindow>
+
+    {0}
+snippet include_QAbstractTableModel
+alias iqatm   
+options head
+    #include <QAbstractTableModel>
+
+    {0}
+snippet include_QAccessibleTableInterface
+alias iqati   
+options head
+    #include < QAccessibleTableInterface>
+
+    {0}
+snippet include_QAccessibleTable2Interface
+alias iqat2i  
+options head
+    #include <QAccessibleTable2Interface>
+
+    {0}
+snippet include_QAccessibleTable2CellInterface
+alias iqat2ci 
+options head
+    #include <QAccessibleTable2CellInterface>
+
+    {0}
+snippet include_QTextTable
+alias iqtt    
+options head
+    #include <QTextTable>
+
+    {0}
+snippet include_QTextTableCell
+alias iqttc   
+options head
+    #include <QTextTableCell>
+
+    {0}
+snippet include_QTextTableFormat
+alias iqttf   
+options head
+    #include <QTextTableFormat>
+
+    {0}
+snippet include_QTextTableCellFormat
+alias iqttcf  
+options head
+    #include <QTextTableCellFormat>
+
+    {0}
+snippet include_QSqlTableModel
+alias iqstm   
+options head
+    #include <QSqlTableModel>
+
+    {0}
+snippet include_QSqlRelationalTableModel
+alias iqsrtm  
+options head
+    #include <QSqlRelationalTableModel>
+
+    {0}
+snippet include_QTable
+alias iqt     
+options head
+    #include <QTable>
+
+    {0}
+snippet include_QTableEvent
+alias iqte    
+options head
+    #include <QTableEvent>
+
+    {0}
+snippet include_QTableView
+alias iqtv    
+options head
+    #include <QTableView>
+
+    {0}
+snippet include_QTableWidget
+alias iqtw    
+options head
+    #include <QTableWidget>
+
+    {0}
+snippet include_QTableWidgetSelectionRange
+alias iqtwsr  
+options head
+    #include <QTableWidgetSelectionRange>
+
+    {0}
+snippet include_QTableWidgetItem
+alias iqtwi   
+options head
+    #include <QTableWidgetItem>
+
+    {0}
+snippet include_QColor
+alias iqc     
+options head
+    #include <QColor>
+
+    {0}
+snippet include_QImage
+alias iqi     
+options head
+    #include <QImage>
+
+    {0}
+snippet include_QWidget
+alias iqw     
+options head
+    #include <QWidget>
+
+    {0}
+snippet include_QFile
+alias iqf     
+options head
+    #include <QFile>
+
+    {0}
+snippet include_QIODevice
+alias iqiod   
+options head
+    #include <QIODevice>
+
+    {0}
+snippet include_QMessageBox
+alias iqmb    
+options head
+    #include <QMessageBox>
+
+    {0}
+snippet include_QFileDialog
+alias iqfd    
+options head
+    #include <QFileDialog>
+
+    {0}
+snippet include_QDebug
+alias iqdb    
+options head
+    #include <QDebug>
+
+    {0}
+snippet include_QDataStream
+alias iqds    
+options head
+    #include <QDataStream>
+
+    {0}
+snippet include_QObject
+alias iqo     
+options head
+    #include <QObject>
+
+    {0}
+snippet include_QKeyEvent
+alias iqke    
+options head
+    #include <QKeyEvent>
+
+    {0}
+snippet include_QTextEdit
+alias iqe     
+options head
+    #include <QTextEdit>
+
+    {0}
+snippet include_QLineEdit
+alias iqle    
+options head
+    #include <QLineEdit>
+
+    {0}
+snippet include_QIntValidator
+alias iqiv    
+options head
+    #include <QIntValidator>
+
+    {0}
+snippet include_QValidator
+alias iqv     
+options head
+    #include <QValidator>
+
+    {0}
+snippet include_QRegExpValidator
+alias iqrev   
+options head
+    #include <QRegExpValidator>
+
+    {0}
+snippet include_QFormLayout
+alias iqfl    
+options head
+    #include <QFormLayout>
+
+    {0}
+snippet include_QList
+alias iqli    
+options head
+    #include <QList>
+
+    {0}
+snippet include_QToolBar
+alias iqtb    
+options head
+    #include <QToolBar>
+
+    {0}
+snippet include_QCloseEvent
+alias iqce    
+options head
+    #include <QCloseEvent>
+
+    {0}
+snippet include_QPoint
+alias iqpt    
+options head
+    #include <QPoint>
+
+    {0}
+snippet put_debug_message_to_console
+alias qdb     
+options head
+    qDebug("${1:formatted text}"${2:[, optional parameters[, ...]]});
+    ${0}
+
+# End cpp.snip

@@ -1,0 +1,14 @@
+#
+# Ultisnips snippet file snippets
+#
+
+snippet snippet_entry
+alias snip    
+options head
+snippet ${2:description}
+alias ${1:trigger} ${3:options}
+    ${4:snippet content}
+    `!v ""`
+    ${0}
+
+

@@ -1,0 +1,339 @@
+#
+# Begin openscad.snippets
+#
+
+# Snippets for OpenSCAD (*.scad) files
+snippet heading_and_outline
+alias hdr 
+options head
+    /*
+     * File   : `!p snip.rv = snip.fn`
+     * Project: ${1:`!p snip.rv = snip.basename`}
+     * Author : Tommy Lincoln <pajamapants3000@gmail.com>
+     * License: ${2:None!}
+     * Purpose: ${3:purpose}
+     * Created: `date +%m/%d/%Y`
+     */
+
+    // Constants
+
+    // Imports
+
+    // Modules
+
+    // Functions
+
+    // Main
+
+
+snippet line_comment
+alias // 
+    // ${1:comment}
+    ${0}
+
+snippet block_comment
+alias /* 
+    /*
+     *  ${1:comment}
+     */
+    ${0}
+
+snippet module
+alias mod 
+options head
+    module ${1:module name}(${2:variable list})
+    {
+        ${0}
+    }
+
+snippet function
+alias fun 
+options head
+    function ${1:function name}(${2:variable list})
+    {
+        ${0}
+    }
+
+snippet include_separate_source_file
+alias in 
+options head
+include <${1:source_file}.scad>;${0}
+
+snippet use_separate_source_file
+alias use 
+options head
+    use <${1:source_file}.scad>;${0}
+
+snippet import_stl_file
+alias im 
+options head
+    import <${1:source_file}.stl>;${0}
+
+    # 2D
+snippet circle
+alias ci 
+    circle( r = ${1:radius} );${0}
+
+snippet square
+alias sq 
+    square( s = ${1:size}, center = ${2:false} );${0}
+
+snippet polygon
+alias pg 
+    polygon( points = ${1:points}${2:, paths = <optional paths>} );${0}
+
+snippet text;_full_feature
+alias tex 
+    text( text = "${1:text}", s = ${2:size}, font = "${3:Liberation Mono}", halign = "${4:left}", valign = "${5:baseline}", spacing = ${6:1}, direction = "${7:ltr}", language = "${8:en}", script = "${9:latin}"${10:, $fn = number of segments} );${0}
+
+snippet text
+alias te 
+    text( text = "${1:text}"${2:, additional options} );${0}
+
+    # 3D Shapes
+snippet cuboid
+alias cu 
+    cube( size = [${1:x}, ${2:y}, ${3:z}], center = ${4:false} );${0}
+
+snippet cube_or_cuboid_with_size_in_vector_variable
+alias cuu 
+    cube( size = ${1:x}, center = ${4:false} );${0}
+
+snippet sphere
+alias sp 
+    sphere( r = ${1:radius}, \$fn = ${2:0}, \$fa = ${3:12}, \$fs = ${4:2} );${0}
+
+snippet sphere_with_any_$fx_set_in_environment
+alias spp 
+    sphere( r = ${1:radius}, ${2:$fn = 0, $fa = 12, $fs = 2} );${0}
+
+snippet cylinder
+alias cy 
+    cylinder( h = ${1:height}, r = ${2:radius}, center = ${3:false} );${0}
+
+snippet cylindrical_cone
+alias cn 
+    cylinder( h = ${1:height}, r1 = ${2:bottom radius}, r2 = ${3:top radius}, center = ${4:false} );${0}
+
+snippet polyhedron
+alias po 
+    polyhedron( points = ${1:point vector list}, faces = ${2:face verticies vector list}, convexity = ${3:1} );${0}
+
+# Transformations
+snippet rotate_in_degrees
+alias ro 
+    rotate( a = [${1:x-rot}, ${2:y-rot}, ${3:z-rot}] )
+    {
+        ${0}
+    }
+
+snippet rotate_about_a_vector
+alias rov 
+    rotate( a = ${1:degrees}, v = ${2:vector-defined axis} )
+    {
+        ${0}
+    }
+
+snippet scale
+alias sc 
+    scale( v = [${1:1}, ${2:1}, ${3:1}] )
+    {
+        ${0}
+    }
+
+snippet resize
+alias res 
+    resize( newsize = [${1:x}, ${2:y}, ${3:z}] )
+    {
+        ${0}
+    }
+
+snippet translate
+alias tr 
+    translate( v = [${1:x}, ${2:y}, ${3:z}] )
+    {
+        ${0}
+    }
+
+snippet mirror
+alias mi 
+    mirror( v = [${1:x}, ${2:y}, ${3:z}] )
+    {
+        ${0}
+    }
+
+snippet multmatrix_with_variable_argument
+alias mmm 
+    multmatrix( m = ${1:M} )
+    {
+        ${0}
+    }
+
+snippet multmatrix
+alias mm 
+    multmatrix( m = [
+        [ ${1:Scale X}, ${2:Scale X sheared along Y}, ${3:Scale X sheared along Z} ${4:Translate X}],
+        [ ${5:Scale Y sheared along X}, ${6:Scale Y}, ${7:Scale Y sheared along Z} ${8:Translate Y}],
+        [ ${9:Scale Z sheared along X}, ${10:Scale Z sheared along Y}, ${11:Scale Z} ${12:Translate Z}],
+        [ 0, 0, 0, 1]
+        ] )
+    {
+        ${0}
+    }
+
+snippet set_multimatrix_variable_value
+alias mma 
+    M = [
+        [ ${1:Scale X}, ${2:Scale X sheared along Y}, ${3:Scale X sheared along Z} ${4:Translate X}],
+        [ ${5:Scale Y sheared along X}, ${6:Scale Y}, ${7:Scale Y sheared along Z} ${8:Translate Y}],
+        [ ${9:Scale Z sheared along X}, ${10:Scale Z sheared along Y}, ${11:Scale Z} ${12:Translate Z}],
+        [ 0, 0, 0, 1]
+        ];
+
+snippet color_rgba;_fractional_values
+alias co 
+    color( [${1:r}, ${2:g}, ${3:b}, ${4:a}] )
+    {
+        ${0}
+    }
+
+snippet color_rgb,_a;_fractional_values
+alias coa 
+    color( [${1:r}, ${2:g}, ${3:b}], a = ${4:1.0} )
+    {
+        ${0}
+    }
+
+snippet color_name,_a;_fractional_value_for_a
+alias col 
+    color( "${1:name}", a = ${2:1.0} )
+    {
+        ${0}
+    }
+
+snippet color_rgba;_0-255
+alias co255 
+    color( [${1:r}/255, ${2:g}/255, ${3:b}/255, ${4:a}/255] )
+    {
+        ${0}
+    }
+
+snippet color_rgb,_a;_0-255
+alias coa255 
+    color( [${1:r}/255, ${2:g}/255, ${3:b}/255], a = ${4:255}/255 )
+    {
+        ${0}
+    }
+
+snippet color_name,_a;_0-255_for_a
+alias col255 
+    color( "${1:name}", a = ${2:255}/255 )
+    {
+        ${0}
+    }
+
+snippet offset
+alias ofr 
+    offset( r = ${1:radius}, chamfer = ${2:false} )
+    {
+        ${0}
+    }
+
+snippet offset
+alias ofd 
+    offset( delta = ${1:delta}, chamfer = ${2:false} )
+    {
+        ${0}
+    }
+
+snippet minkowski
+alias mi 
+    minkowski()
+    {
+        ${0}
+    }
+
+snippet hull
+alias hu 
+    hull()
+    {
+        ${0}
+    }
+
+# Boolean combinations
+snippet union
+alias un 
+    union()
+    {
+        ${0}
+    }
+
+snippet difference
+alias di 
+    difference()
+    {
+        ${0}
+    }
+
+snippet intersection
+alias ix 
+    intersection()
+    {
+        ${0}
+    }
+
+snippet render
+alias ren 
+    render( convexity = ${1:1} )
+    {
+        ${0}
+    }
+
+# Conditionals
+snippet ternary_operator
+alias ?:  i
+    ${1:test} ? ${2:value if true} : ${3:value if false}${0}
+
+# Iterations
+snippet for_loop
+alias fo 
+    for( ${1:i} = [ ${2:start} : ${3:1} : ${4:end} ] )
+    {
+        ${0}
+    }
+
+snippet for_loop;_vector_sets_values
+alias fov 
+    for( ${1:i} = ${2:values} )
+    {
+        ${0}
+    }
+
+snippet intersection_for
+alias inf 
+    intersection_for( ${1:i} = [ ${2:start} : ${3:1} : ${4:end} ] )
+    {
+        ${0}
+    }
+
+snippet intersection_for;_vector_sets_values
+alias infv 
+    intersection_for( ${1:i} = ${2:values} )
+    {
+        ${0}
+    }
+
+snippet linear_extrude
+alias lx 
+    linear_extrude( height = ${1:fanwidth}, center = ${2:true}, convexity = ${3:10}, twist = ${4:-fanrot}, slices = ${5:20}, scale = ${6:1.0} )
+    {
+        ${0}
+    }
+
+snippet rotate_extrude
+alias rx 
+    rotate_extrude( angle = ${1:360}, convexity = ${2:2} )
+    {
+        ${0}
+    }
+

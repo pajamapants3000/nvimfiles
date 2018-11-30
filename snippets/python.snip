@@ -1,0 +1,76 @@
+# Begin python.snippets
+# Snippets for coding in Python
+snippet simple_heading
+alias hdr     
+options head
+    #!/usr/bin/python3
+    # `!p snip.rv = fn`
+    # ${1:description of program}
+    ${0}
+
+snippet full_heading
+alias hdrr    
+options head
+    #!/usr/bin/python3
+    #*-File   : `!p snip.rv = snip.fn`
+    #*-Program: ${1:`!p snip.rv = snip.basename`}
+    #*-Purpose: ${2:What is this?}
+    #*-Author : Tommy Lincoln <pajamapants3000@gmail.com>
+    #*-License: ${3:None!}
+    ${0}
+
+snippet from_module_import_*
+alias m*      
+options head
+    from $1 import *
+    ${0}
+
+snippet import_tkinter_module_as_tk
+alias mtk     
+options head
+    import tkinter as tk
+
+
+snippet import_tkinter_module_*
+alias mtkk    
+options head
+    from tkinter import *
+
+
+snippet import_pyglet_module
+alias mpg     
+options head
+    import pyglet
+
+
+snippet import_peewee_module
+alias mpw     
+options head
+    import peewee
+
+
+snippet import_sys_module
+alias ms      
+options head
+    import sys
+
+
+snippet import_os_module
+alias mo      
+options head
+    import os
+
+
+snippet import_common_modules
+alias mm      
+options head
+    import os, sys
+
+
+snippet run_from_main
+alias nm      
+options head
+    if __name__ == '__main__':
+        ${0}
+
+

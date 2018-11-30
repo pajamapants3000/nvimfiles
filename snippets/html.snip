@@ -1,0 +1,162 @@
+# Begin html.snippets
+
+# Snippets for coding in HTML
+
+# Include markup that was separated out for use in multiple contexts:
+extends html-markup
+
+snippet Typical_html_header
+alias hdr     
+options head
+    <!DOCTYPE html>
+    <html lang="en-US">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <title>${1:Webpage Title}</title>
+      ${0}
+
+snippet Typical_xhtml_header
+alias xdr     
+options head
+    <!doctype xhtml />
+    <html lang="en-US">
+    <head>
+    <meta charset="UTF-8" />
+
+    <title>${1:Webpage Title}</title>
+    ${0}
+
+snippet Basic_html_outline
+alias skel    
+options head
+    <!DOCTYPE html>
+    <html lang="en-US">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+
+    </head>
+    <body>
+      ${0}
+    </body>
+    </html>
+
+snippet Basic_xhtml_outline
+alias xkel    
+options head
+    <!doctype xhtml />
+    <html lang="en-US">
+    <head>
+    <meta charset="UTF-8" />
+
+    <title>${1:Webpage Title}</title>
+
+    </head>
+
+    <body>
+      ${0}
+
+    </body>
+    </html>
+
+snippet CSS_Stylesheet_Inclusion
+alias cs      
+    <link rel="stylesheet" type="text/css" href="${1:stylesheet}">
+    ${0}
+
+snippet Comment_-_inline
+alias cm      
+  <!-- ${1:Insert Comment} -->${0}
+
+snippet Comment_-_multiline
+alias cmm     
+options head
+    <!-->
+      ${1:Insert Comment}
+    <!-->
+    ${0}
+
+snippet HTML5_Support_for_IE9_and_earlier
+alias lt9     
+options head
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
+    </script>
+    <![endif]-->
+
+snippet style_block
+alias st      
+    <style>
+      ${1:Enter Stylings}
+    </style>
+
+snippet body_block
+alias bo      
+    <body>
+      ${1:Enter Body}
+    </body>
+
+snippet header_block
+alias he      
+    <header>
+      ${1:Enter Header}
+    </header>
+
+snippet article_block
+alias ar      
+    <article>
+      ${1:Enter Article}
+    </article>
+
+snippet section_block
+alias se      
+    <section>
+      ${1:Enter Section}
+    </section>
+
+snippet footer_block
+alias fo      
+    <footer>
+      ${1:Enter Footer}
+    </footer>
+
+snippet title_inline
+alias ti      
+    <title>${1:Enter Title}</title>
+    ${0}
+
+snippet paragraph_inline
+alias pa      
+    <p>${1:Enter Paragraph}</p>${0}
+
+# Special characters
+snippet single-quote
+alias ' 
+    &#39;
+
+snippet ampers-and
+alias & 
+    &amp;
+
+snippet double-quote
+alias " 
+    &quot;
+
+snippet greater-than
+alias >> 
+    &gt;
+
+snippet less-than
+alias << 
+    &lt;
+
+snippet extra_whitespace
+alias <Space><Space> 
+    &nbsp;
+
+#
+
