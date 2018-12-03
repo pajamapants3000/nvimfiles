@@ -2,14 +2,14 @@
 
 # Snippets for TypeScript files
 
-snippet     im
-abbr        import
+snippet     import
+alias       im
 options     head
     import { ${1:ClassNames} } from '${2:SourceComponent}';
     ${0}
 
-snippet     comp
-abbr        component
+snippet     component
+alias       comp
 options     head
     @Component({
       selector: 'app-${1:ComponentNameToBeLowercased}',
@@ -23,4 +23,10 @@ options     head
     ngOnInit() { }
 
     }
+
+snippet     error: not implemented
+abbr        e: not impl.
+alias       eni
+    throw new Error('not implemented');
+    ${0}
 
