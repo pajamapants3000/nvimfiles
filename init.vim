@@ -120,6 +120,8 @@ Plug 'tpope/vim-surround'
 Plug 'mhinz/vim-signify'
 Plug 'juneedahamed/vc.vim'
 Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-repeat'
 
 " * Syntax Highlighting * "
 Plug 'vim-jp/vim-cpp'
