@@ -18,6 +18,6 @@ set guioptions-=T
 set guioptions-=e
 set showtabline=1
 
-GuiFont Source Code Pro Medium:h16:cANSI:qDRAFT
+GuiFont Source Code Pro Medium:h11:cANSI:qDRAFT
 
 " vim: set ft=vim: "
