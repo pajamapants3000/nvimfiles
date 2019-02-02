@@ -59,5 +59,12 @@ set nobuflisted
 " Insert line break, followed by actual carriage return
 inoremap br<CR> <br /><CR>
 
+" Create Wiki Links
+nnoremap <leader>wll :<c-u>.,$s/^\(..*\)$/*<space>[[\1\/index<bar>\1]]/<cr>
+nnoremap <leader>wlo :<c-u>.,$s/^\(..*\)$/*<space>[[\1<bar>\1]]/<cr>
+nnoremap <leader>wl<leader>t
+            \ :<c-u>.,$s/\*<space>\[\[\(.*\)[^-a-zA-Z0-9.&/_]\(.*\)<bar>/*<space>[[\1_\2<bar>/<cr>
+nmap <leader>wl<leader>r
+            \ <c-o><leader>wl<leader>t
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

@@ -120,6 +120,8 @@ Plug 'tpope/vim-surround'
 Plug 'mhinz/vim-signify'
 Plug 'juneedahamed/vc.vim'
 Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-repeat'
 
 " * Syntax Highlighting * "
 Plug 'vim-jp/vim-cpp'
@@ -273,17 +275,33 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " * pajamapants3000/vimwiki * "
-" default wiki
+" main wiki
 let wiki = {}
-" taken from default dictionary; comment out defaults and add any changes
-let wiki.maxhi = 0
-let wiki.css_name = 'style.css'
 let wiki.auto_export = 1
 let wiki.diary_index = 'index'
-let wiki.template_default = 'default'
 let wiki.auto_toc = 1
-let wiki.auto_tags = 0
 let wiki.nested_syntaxes = g:filetype_aliases
+let wiki.path = '~/vimwiki'
+let wiki.path_html = wiki.path . '/html'
+
+" Project wikis - for keeping project wiki with source code repository
+" Project TimeIn
+let wiki_project_timein = copy(wiki)
+let wiki_project_timein.path = 
+    \ substitute($WORKSPACE, "\\", "/", "g") . '/TimeIn/wiki/'
+let wiki_project_timein.path_html = wiki_project_timein.path . '/html/'
+let wiki_project_timein.template_path = wiki_project_timein.path . '/templates/'
+" Project FinancialPanther
+let wiki_project_financialpanther = copy(wiki_project_timein)
+let wiki_project_financialpanther.path =
+    \ substitute($WORKSPACE, "\\", "/", "g") . '/FinancialPanther/wiki/'
+let wiki_project_timein.path_html = wiki_project_financialpanther.path . '/html/'
+
+" Experiment: an attempt to write acceptance tests using vimwiki
+let wiki_fitnesse = copy(wiki)
+let wiki_fitnesse.path = 'C:/Fitnesse/FitnesseRoot/'
+
+
 let wiki.diary_sort = 'desc'
 let wiki.path = '~/vimwiki/'
 let wiki.path_html = wiki.path . '../vimwiki_html/'
@@ -299,34 +317,20 @@ let wiki.ext = '.wiki'
 let wiki.temp = 0
 let wiki.list_margin = -1
 let wiki.diary_rel_path = 'diary/'
-" project wikis - for keeping project wiki with source code repository
-let project_name = 'TimeIn'
-let wiki_project_timein = {}
-" taken from default dictionary; comment out defaults and add any changes
-let wiki_project_timein.maxhi = 0
-let wiki_project_timein.css_name = 'style.css'
-let wiki_project_timein.auto_export = 1
-let wiki_project_timein.diary_index = 'index'
-let wiki_project_timein.template_default = 'default'
-let wiki_project_timein.auto_toc = 1
-let wiki_project_timein.auto_tags = 0
-let wiki_project_timein.nested_syntaxes = g:filetype_aliases
-let wiki_project_timein.diary_sort = 'desc'
-let wiki_project_timein.path = 'C:/Users/otrip/source/repos/' . project_name . '/wiki/'
-let wiki_project_timein.path_html = wiki_project_timein.path . '../wiki_html/'
-let wiki_project_timein.template_path = wiki_project_timein.path . 'templates/'
-let wiki_project_timein.diary_link_fmt = '%Y-%m-%d'
-let wiki_project_timein.template_ext = '.tpl'
-let wiki_project_timein.syntax = 'default'
-let wiki_project_timein.custom_wiki2html = ''
-let wiki_project_timein.automatic_nested_syntaxes = 1
-let wiki_project_timein.index = 'index'
-let wiki_project_timein.diary_header = 'Diary'
-let wiki_project_timein.ext = '.wiki'
-let wiki_project_timein.temp = 0
-let wiki_project_timein.list_margin = -1
-let wiki_project_timein.diary_rel_path = 'diary/'
+" Project wikis - for keeping project wiki with source code repository
+" Project TimeIn
+let wiki_project_timein = copy(wiki)
+let wiki_project_timein.path = 
+    \ substitute($WORKSPACE, "\\", "/", "g") . '/TimeIn/wiki/'
+let wiki_project_timein.path_html = wiki_project_timein.path . '/html/'
+let wiki_project_timein.template_path = wiki_project_timein.path . '/templates/'
+" Project FinancialPanther
+let wiki_project_financialpanther = copy(wiki_project_timein)
+let wiki_project_financialpanther.path =
+    \ substitute($WORKSPACE, "\\", "/", "g") . '/FinancialPanther/wiki/'
+let wiki_project_timein.path_html = wiki_project_financialpanther.path . '/html/'
 
+" Project MASS
 let wiki_project_mass = {}
 " taken from default dictionary; comment out defaults and add any changes
 let wiki_project_mass.maxhi = 0
@@ -352,19 +356,24 @@ let wiki_project_mass.ext = '.wiki'
 let wiki_project_mass.temp = 0
 let wiki_project_mass.list_margin = -1
 let wiki_project_mass.diary_rel_path = 'diary/'
-" an attempt to write acceptance tests using vimwiki
-let wiki_fitnesse = {}
-let wiki_fitnesse.css_name = 'style.css'
-let wiki_fitnesse.path = 'C:/Fitnesse/FitnesseRoot'
+" Experiment: an attempt to write acceptance tests using vimwiki
+let wiki_fitnesse = copy(wiki)
+let wiki_fitnesse.path = 'C:/Fitnesse/FitnesseRoot/'
 let wiki_fitnesse.syntax = 'fitnesse'
-let wiki_fitnesse.ext = '.wiki'
+
+" plugin options
 let g:vimwiki_folding = 'expr'
-let g:vimwiki_list = [wiki, wiki_project_timein, wiki_project_mass, wiki_fitnesse]
+let g:vimwiki_list = [wiki,
+    \ wiki_project_timein,
+    \ wiki_project_financialpanther,
+    \ wiki_fitnesse,
+    \ wiki_project_mass]
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_use_calendar = 1
 let g:vimwiki_html_header_numbering = 0
 
 " * tpope/vim-surround * "
+" NOTE: for visual-mode surrounding, simply type 'S' then the surround character
 nmap `` ysiw`
 nmap (( ysiw(
 nmap )) ysiw)
@@ -398,22 +407,28 @@ inoremap <leader>fv <c-o>:redir<space>@z<CR>
             \.SetFileType('vimwiki').'"'<CR>
             \<c-o>:redir<space>END<CR>
             "\<c-o>:echo<space>@z<CR>
-" Create Wiki Links
-nnoremap <leader>wll :<c-u>.,$s/^\(..*\)$/*<space>[[\1\/index<bar>\1]]/<cr>
-nnoremap <leader>wlo :<c-u>.,$s/^\(..*\)$/*<space>[[\1<bar>\1]]/<cr>
-nnoremap <leader>wl<leader>t
-            \ :<c-u>.,$s/\*<space>\[\[\(.*\)[^-a-zA-Z0-9./_]\(.*\)<bar>/*<space>[[\1_\2<bar>/<cr>
-nmap <leader>wl<leader>r
-            \ <c-o><leader>wl<leader>t
 
 " Quick folder jumps
 nnoremap <Leader>dh :<c-u>cd ~<cr>
 nnoremap <Leader>dr :<c-u>cd ~/source/repos<cr>
-nnoremap <Leader>dw :<c-u>cd ~/source/workspace<cr>
+exe 'nnoremap <Leader>dw :<c-u>cd ' .
+    \ substitute($WORKSPACE, "\\", "/", "g") . '<cr>'
 
-" vimwiki-like jumping around
+" vimwiki-like jumping around buffers
 nnoremap <BS> :<c-u>MBEbp<CR>
 nnoremap <Space> :<c-u>MBEbn<CR>
+
+" easier buffer switching
+nnoremap \b :<c-u>exe v:count . "b"<cr>
+
+" working with tabs (what about gt/gT?)
+inoremap <c-tab> <c-o>:tabn<cr>
+nnoremap <c-tab> :<c-u>tabn<cr>
+inoremap <c-s-tab> <c-o>:tabp<cr>
+nnoremap <c-s-tab> :<c-u>tabp<cr>
+nnoremap <c-n> :<c-u>tabnew<cr>
+nnoremap <c-q> :<c-u>tabclose<cr>
+
 
 " arrow keys are redundant, so use them for something else - changing window focus
 nnoremap <Up> <c-w><c-k>
@@ -466,6 +481,9 @@ augroup filetypedetect
     au BufNewFile,BufRead,BufEnter {,.,.g,_,_g}vimrc  setf vim
 
 augroup END
+
+" VimWiki - prevent buflisted
+    au BufNewFile,BufRead,BufEnter *.wiki       set nobuflisted
 
 " *** Late-Set Options *** "
 
