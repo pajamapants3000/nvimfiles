@@ -296,6 +296,12 @@ let wiki_project_financialpanther = copy(wiki_project_timein)
 let wiki_project_financialpanther.path =
     \ substitute($WORKSPACE, "\\", "/", "g") . '/FinancialPanther/wiki/'
 let wiki_project_timein.path_html = wiki_project_financialpanther.path . '/html/'
+" Project RustBook (working through The Rust Programming Language)
+let wiki_RustBook = copy(wiki)
+let wiki_RustBook.path = 
+    \ substitute($WORKSPACE, "\\", "/", "g") . '/Rust/TheBook/wiki/'
+let wiki_RustBook.path_html = wiki_RustBook.path . '/html/'
+let wiki_RustBook.template_path = wiki_RustBook.path . '/templates/'
 
 " Experiment: an attempt to write acceptance tests using vimwiki
 let wiki_fitnesse = copy(wiki)
@@ -307,7 +313,8 @@ let g:vimwiki_folding = 'expr'
 let g:vimwiki_list = [wiki,
     \ wiki_project_timein,
     \ wiki_project_financialpanther,
-    \ wiki_fitnesse]
+    \ wiki_fitnesse,
+    \ wiki_RustBook]
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_use_calendar = 1
 let g:vimwiki_html_header_numbering = 0
@@ -369,12 +376,14 @@ nnoremap <c-s-tab> :<c-u>tabp<cr>
 nnoremap <c-n> :<c-u>tabnew<cr>
 nnoremap <c-q> :<c-u>tabclose<cr>
 
-
 " arrow keys are redundant, so use them for something else - changing window focus
 nnoremap <Up> <c-w><c-k>
 nnoremap <Down> <c-w><c-j>
 nnoremap <Left> <c-w><c-h>
 nnoremap <Right> <c-w><c-l>
+
+" delete carriage returns (I think) from line endings in current buffer
+nnoremap \\<Enter> :<c-u>%s/$//
 
 " *** AutoCommands *** "
 " Toggle number/relativenumber when entering/leaving buffer - more useful display
@@ -405,7 +414,7 @@ augroup filetypedetect
     au BufNewFile,BufRead,BufEnter *.xaml       setf xml
     au BufNewFile,BufRead,BufEnter *.xaml       setl omnifunc=xaml#complete
     " Rust
-    au BufNewFile,BufRead,BufEnter *.rst        setf rust
+    au BufNewFile,BufRead,BufEnter *.rs{,t}        setf rust
     " HTML
     au BufNewFile,BufRead,BufEnter *.htm{,l}    setf html
     " CSS

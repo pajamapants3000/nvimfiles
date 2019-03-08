@@ -33,7 +33,8 @@ call TlTokenHi()
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " Vim settings
 "**************
-setlocal textwidth=80
+"setlocal textwidth=80
+setlocal textwidth=0
 setlocal formatoptions+=t
 setlocal tabstop=4
 setlocal softtabstop=4
@@ -41,7 +42,7 @@ setlocal shiftwidth=4
 setlocal expandtab
 setlocal showcmd
 setlocal incsearch
-setlocal wrap
+setlocal nowrap
 setlocal spell
 setlocal indentexpr=
 setlocal foldenable
@@ -60,10 +61,14 @@ set nobuflisted
 inoremap br<CR> <br /><CR>
 
 " Create Wiki Links
+" links to chapters
 nnoremap <leader>wll :<c-u>.,$s/^\(..*\)$/*<space>[[\1\/index<bar>\1]]/<cr>
+" links to pages
 nnoremap <leader>wlo :<c-u>.,$s/^\(..*\)$/*<space>[[\1<bar>\1]]/<cr>
+" replace characters with underscore
 nnoremap <leader>wl<leader>t
             \ :<c-u>.,$s/\*<space>\[\[\(.*\)[^-a-zA-Z0-9.&/_]\(.*\)<bar>/*<space>[[\1_\2<bar>/<cr>
+" alternate replace characters with underscore
 nmap <leader>wl<leader>r
             \ <c-o><leader>wl<leader>t
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
