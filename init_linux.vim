@@ -252,6 +252,8 @@ let g:LanguageClient_serverCommands = {
 "    \ 'lua': ['lua-lsp'],
 "    \ 'sh': ['bash-language-server', 'start'],
 
+let g:LanguageClient_hasSnippetSupport = 1
+
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
 "nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>

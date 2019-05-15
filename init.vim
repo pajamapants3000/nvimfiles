@@ -1,12 +1,11 @@
-" $LOCALAPPDATA/nvim/init.vim
+" ${XDG_CONFIG_HOME}/nvim/init.vim
 "
 " Neovim configuration file
-" Currently 100% Windows-configured
 
 " **************************************************************************** "
 
 " *** Definitions *** "
-let g:NeovimConfigurationDirectory = $LOCALAPPDATA.'/nvim'
+let g:NeovimConfigurationDirectory = '~/.config/nvim'
 let g:ExtendDirectory = g:NeovimConfigurationDirectory.'/extend'
 
 let g:filetype_aliases = {}
@@ -263,8 +262,10 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
 " * Shougo/deoplete.nvim * "
 let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = "C:/Python36/python.exe"
-let g:python_host_prog = "C:/Python27/python.exe"
+let g:python3_host_prog = 'python3'
+let g:python_host_prog = 'python'
+"let g:python3_host_prog = "C:/Python36/python.exe"
+"let g:python_host_prog = "C:/Python27/python.exe"
 
 " * scrooloose/syntastic * "
 set statusline+=%#warningmsg#
