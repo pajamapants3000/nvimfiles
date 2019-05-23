@@ -62,27 +62,27 @@ options head
 snippet scanf,_single_integer
 alias si      
 options head
-scanf("%d", &${1:storage var});
-    ${0}
+    scanf("%d", &${1:storage var});
+        ${0}
 
 snippet create_main_function,_no_args
 alias ma      
 options head
-int main(void)
-    {
-        ${0}
-        return 0;
-    }
+    int main(void)
+        {
+            ${0}
+            return 0;
+        }
 
 
 snippet create_main_function,_with_args
 alias maa     
 options head
-int main(int argc, char *argv[])
-    {
-        ${0}
-        return 0;
-    }
+    int main(int argc, char *argv[])
+        {
+            ${0}
+            return 0;
+        }
 
 
 snippet single_line_comment
@@ -276,12 +276,6 @@ snippet macro_to_determine_maximum_of_two_values
 alias dmx     
 options head
         #define max(x, y) ((x) > (y) ? (x) : (y))
-
-        {0}
-snippet macro_to_determine_maximum_of_two_values
-alias dmn     
-options head
-        #define min(x, y) ((x) < (y) ? (x) : (y))
 
         {0}
 snippet macro_to_determine_if_character_is_an_uppercase_letter

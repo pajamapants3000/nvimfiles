@@ -39,6 +39,9 @@ let g:filetype_aliases['sharp']       = 'cs'
 let g:filetype_aliases['razor']       = 'cshtml'
 let g:filetype_aliases['razorvb']     = 'vbhtml'
 
+let mapleader = '\'
+let maplocalleader = '`'
+
 " *** Functions *** "
 function! NumberToggleRel()
     if(&number == 1)
@@ -102,7 +105,7 @@ Plug 'fholgado/minibufexpl.vim'
 
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
-    \ 'do': 'powershell -executionpolicy bypass -File install.ps1',
+    \ 'do': 'install.sh',
     \ }
 
 " (Optional) Multi-entry selection UI. Run install script in repo
@@ -121,6 +124,8 @@ Plug 'juneedahamed/vc.vim'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
+Plug 'embear/vim-localvimrc'
+Plug 'valloric/matchtagalways'
 
 " * Syntax Highlighting * "
 Plug 'vim-jp/vim-cpp'
@@ -136,8 +141,8 @@ Plug 'PProvost/vim-ps1'
 Plug 'vim-scripts/fitnesse.vim'
 
 " * Additional Language Support * "
-Plug 'pajamapants3000/nvim-typescript', {'do': './install.bat'}
-
+Plug 'pajamapants3000/nvim-typescript', {'do': './install.sh'}
+Plug 'sukima/xmledit'
 
 " * Theme * "
 Plug 'pajamapants3000/vim-colorstepper'
@@ -276,6 +281,76 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_cpp_compiler_options = ' -std=c++14 -fPIC'
+let g:syntastic_cpp_include_dirs = ["./", "./", "/usr/include",
+            \ "/usr/include/x86_64-linux-gnu/",
+            \ "/usr/include/x86_64-linux-gnu/qt5",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtSql",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtAccessibilitySupport",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtDesigner",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtEglSupport",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtGui",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtMultimedia",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtOpenGL",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtPositioning",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtQuick",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtQuickTest",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtServiceSupport",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtThemeSupport",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtWebEngine",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtWidgets",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtCharts",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtDesignerComponents",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtEventDispatcherSupport",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtHelp",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtMultimediaGstTools",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtOpenGLExtensions",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtPositioningQuick",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtQuickControls2",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtSql",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtUiPlugin",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtWebEngineCore",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtX11Extras",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtConcurrent",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtDeviceDiscoverySupport",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtFbSupport",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtInputSupport",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtMultimediaQuick",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtPacketProtocol",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtQuickParticles",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtScript",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtSvg",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtUiTools",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtWebEngineWidgets",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtXml",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtCore",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtEdidSupport",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtFontDatabaseSupport",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtKmsSupport",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtMultimediaWidgets",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtPlatformCompositorSupport",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtQml",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtQuickShapes",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtScriptTools",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtTest",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtVulkanSupport",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtWebKit",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtXmlPatterns",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtDBus",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtEglFSDeviceIntegration",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtGlxSupport",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtLinuxAccessibilitySupport",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtNetwork",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtPlatformHeaders",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtQmlDebug",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtQuickTemplates2",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtSensors",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtTextToSpeech",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtWebChannel",
+            \ "/usr/include/x86_64-linux-gnu/qt5/QtWebKitWidgets",
+            \ ]
 
 " * pajamapants3000/vimwiki * "
 " main wiki
@@ -331,6 +406,10 @@ nmap [[ ysiw[
 nmap ]] ysiw]
 nmap {{ ysiw{
 nmap }} ysiw}
+
+" * 'sukima/xmledit'
+nnoremap <leader>% :MtaJumpToOtherTag<cr>
+let xml_jump_string = "`"
 
 " *** Mappings *** "
 " Quick-escape/normal-mode
@@ -420,6 +499,7 @@ augroup filetypedetect
     au BufNewFile,BufRead,BufEnter *.rs{,t}        setf rust
     " HTML
     au BufNewFile,BufRead,BufEnter *.htm{,l}    setf html
+
     " CSS
     au BufNewFile,BufRead,BufEnter *.css        setf css
     " HLA
