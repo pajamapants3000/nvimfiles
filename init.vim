@@ -141,8 +141,9 @@ Plug 'PProvost/vim-ps1'
 Plug 'vim-scripts/fitnesse.vim'
 
 " * Additional Language Support * "
-Plug 'pajamapants3000/nvim-typescript', {'do': './install.sh'}
+"Plug 'pajamapants3000/nvim-typescript', {'do': './install.sh'}
 Plug 'sukima/xmledit'
+Plug 'derekwyatt/vim-fswitch'
 
 " * Theme * "
 Plug 'pajamapants3000/vim-colorstepper'
@@ -241,6 +242,14 @@ imap <expr><CR>
 \ "\<Plug>(neosnippet_expand)" : "\<CR>"
 
 
+" * 'valloric/matchtagalways'
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'jinja' : 1,
+    \ 'rc' : 1,
+    \}
 
 " * autozimu/LanguageClient-neovim * "
 " Required for operations modifying multiple buffers like rename.
@@ -252,6 +261,7 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
     \ 'go': ['go-langserver'],
     \ 'cpp': ['clangd'],
+    \ 'c': ['clangd'],
     \ 'python': ['pyls'],
     \ }
 "    \ 'lua': ['lua-lsp'],
@@ -411,6 +421,19 @@ nmap }} ysiw}
 nnoremap <leader>% :MtaJumpToOtherTag<cr>
 let xml_jump_string = "`"
 
+" * 'derekwyatt/vim-fswitch'
+" See autocommands
+nmap <silent> <F4>       :FSHere<cr>
+nmap <silent> <Leader>cl :FSRight<cr>
+nmap <silent> <Leader>cL :FSSplitRight<cr>
+nmap <silent> <Leader>ch :FSLeft<cr>
+nmap <silent> <Leader>cH :FSSplitLeft<cr>
+nmap <silent> <Leader>ck :FSAbove<cr>
+nmap <silent> <Leader>cK :FSSplitAbove<cr>
+nmap <silent> <Leader>cj :FSBelow<cr>
+nmap <silent> <Leader>cJ :FSSplitBelow<cr>
+"
+
 " *** Mappings *** "
 " Quick-escape/normal-mode
 inoremap jj <Esc>
@@ -488,10 +511,19 @@ augroup filetypedetect
     au BufNewFile,BufRead,BufEnter
                 \ [Mm]akefile{,.*},*.{make,mak,mk}
                 \ setf make
-    " C
-    au BufNewFile,BufRead,BufEnter *.[ch]       setf c
-    " C++
-    au BufNewFile,BufRead,BufEnter *.[ch]{xx,++,pp},*.C     setf cpp
+    " C/C++
+    au! BufEnter *.c let b:fswitchdst = 'h'
+                \ | let b:fswitchlocs = './,../include,reg:/src/include/'
+                \ | setf c
+    au! BufEnter *.c{pp,c,++,xx},*.C let b:fswitchdst = 'hpp,hh,h++,hxx,H,h'
+                \ | let b:fswitchlocs = './,../include,reg:/src/include/'
+                \ | setf cpp
+    au! BufEnter *.h let b:fswitchdst = 'cpp,cc,c++,cxx,C,c'
+                \ | let b:fswitchlocs = './,../src,../source,reg:/include/src/'
+                \ | setf c
+    au! BufEnter *.hpp let b:fswitchdst = 'cpp,cc,c++,cxx,C'
+                \ | let b:fswitchlocs = './,../src,../source,reg:/include/src/'
+                \ | setf cpp
     " XAML
     au BufNewFile,BufRead,BufEnter *.xaml       setf xml
     au BufNewFile,BufRead,BufEnter *.xaml       setl omnifunc=xaml#complete
@@ -499,6 +531,8 @@ augroup filetypedetect
     au BufNewFile,BufRead,BufEnter *.rs{,t}        setf rust
     " HTML
     au BufNewFile,BufRead,BufEnter *.htm{,l}    setf html
+    " RC
+    au BufNewFile,BufRead,BufEnter *.rc       setf xml
 
     " CSS
     au BufNewFile,BufRead,BufEnter *.css        setf css
