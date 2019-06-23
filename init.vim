@@ -42,6 +42,9 @@ let g:filetype_aliases['razorvb']     = 'vbhtml'
 let mapleader = '\'
 let maplocalleader = '`'
 
+" Additional sources
+exe 'source '.g:NeovimConfigurationDirectory.'/kde-devel-vim.vim'
+
 " *** Functions *** "
 function! NumberToggleRel()
     if(&number == 1)
@@ -126,6 +129,9 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'embear/vim-localvimrc'
 Plug 'valloric/matchtagalways'
+
+" * Revision Control * "
+Plug 'tpope/vim-fugitive'
 
 " * Syntax Highlighting * "
 Plug 'vim-jp/vim-cpp'
@@ -283,84 +289,25 @@ let g:python_host_prog = 'python'
 "let g:python_host_prog = "C:/Python27/python.exe"
 
 " * scrooloose/syntastic * "
+" NOTE: keeping this active for files that don't have LanguageClient support
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_cpp_compiler_options = ' -std=c++14 -fPIC'
-let g:syntastic_cpp_include_dirs = ["./", "./", "/usr/include",
-            \ "/usr/include/x86_64-linux-gnu/",
-            \ "/usr/include/x86_64-linux-gnu/qt5",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtSql",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtAccessibilitySupport",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtDesigner",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtEglSupport",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtGui",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtMultimedia",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtOpenGL",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtPositioning",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtQuick",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtQuickTest",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtServiceSupport",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtThemeSupport",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtWebEngine",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtWidgets",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtCharts",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtDesignerComponents",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtEventDispatcherSupport",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtHelp",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtMultimediaGstTools",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtOpenGLExtensions",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtPositioningQuick",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtQuickControls2",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtSql",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtUiPlugin",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtWebEngineCore",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtX11Extras",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtConcurrent",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtDeviceDiscoverySupport",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtFbSupport",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtInputSupport",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtMultimediaQuick",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtPacketProtocol",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtQuickParticles",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtScript",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtSvg",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtUiTools",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtWebEngineWidgets",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtXml",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtCore",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtEdidSupport",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtFontDatabaseSupport",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtKmsSupport",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtMultimediaWidgets",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtPlatformCompositorSupport",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtQml",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtQuickShapes",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtScriptTools",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtTest",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtVulkanSupport",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtWebKit",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtXmlPatterns",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtDBus",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtEglFSDeviceIntegration",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtGlxSupport",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtLinuxAccessibilitySupport",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtNetwork",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtPlatformHeaders",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtQmlDebug",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtQuickTemplates2",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtSensors",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtTextToSpeech",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtWebChannel",
-            \ "/usr/include/x86_64-linux-gnu/qt5/QtWebKitWidgets",
-            \ ]
+let g:syntastic_cpp_checkers = []
+let g:syntastic_c_checkers = []
+" These options are valid if using syntastic for C/C++
+"+ currently using LanguageClient instead, rendering syntastic redundant
+"let g:syntastic_cpp_checkers = ["clang_check"]
+"let g:syntastic_c_checkers = ["clang_check"]
+"let g:syntastic_cpp_compiler_options = ' -std=c++14 -fPIC'
+"let g:syntastic_cpp_clang_check_post_args = ""
+" Using this to ensure no C/C++ auto-checking
+let g:syntastic_mode_map = {
+    \ "mode": "active",
+    \ "active_filetypes": [],
+    \ "passive_filetypes": ["c", "cpp"] }
 
 " * pajamapants3000/vimwiki * "
 " main wiki
@@ -569,6 +516,7 @@ execute 'set thesaurus=' . g:NeovimConfigurationDirectory . '/thesaurus/en_US.tx
 set nowrap
 set spell
 set iskeyword=@,48-57,_,192-255
+set viminfo=%,!,'50,\"100,:100
 " Session options to save on request
 set ssop-=options               " Don't mess with options/plugins loaded!
 
