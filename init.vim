@@ -310,7 +310,7 @@ let g:syntastic_mode_map = {
     \ "passive_filetypes": ["c", "cpp"] }
 
 " * pajamapants3000/vimwiki * "
-" main wiki
+" main wiki (wiki #1 aka wiki0)
 let wiki = {}
 let wiki.auto_export = 1
 let wiki.diary_index = 'index'
@@ -320,25 +320,31 @@ let wiki.path = '~/vimwiki'
 let wiki.path_html = wiki.path . '/html'
 
 " Project wikis - for keeping project wiki with source code repository
-" Project TimeIn
+" Project TimeIn (wiki #2 aka wiki1)
 let wiki_project_timein = copy(wiki)
 let wiki_project_timein.path = 
     \ substitute($WORKSPACE, "\\", "/", "g") . '/TimeIn/wiki/'
 let wiki_project_timein.path_html = wiki_project_timein.path . '/html/'
 let wiki_project_timein.template_path = wiki_project_timein.path . '/templates/'
-" Project FinancialPanther
+" Project FinancialPanther (wiki #3 aka wiki2)
 let wiki_project_financialpanther = copy(wiki_project_timein)
 let wiki_project_financialpanther.path =
     \ substitute($WORKSPACE, "\\", "/", "g") . '/FinancialPanther/wiki/'
 let wiki_project_timein.path_html = wiki_project_financialpanther.path . '/html/'
-" Project RustBook (working through The Rust Programming Language)
+" Project RustBook (working through The Rust Programming Language) (wiki #5 aka wiki4)
 let wiki_RustBook = copy(wiki)
 let wiki_RustBook.path = 
     \ substitute($WORKSPACE, "\\", "/", "g") . '/Rust/TheBook/wiki/'
 let wiki_RustBook.path_html = wiki_RustBook.path . '/html/'
 let wiki_RustBook.template_path = wiki_RustBook.path . '/templates/'
+" Project TheLibrary (wiki #6 aka wiki5)
+let wiki_project_thelibrary = copy(wiki)
+let wiki_project_thelibrary.path = 
+    \ substitute($WORKSPACE, "\\", "/", "g") . '/TheLibrary/wiki/'
+let wiki_project_thelibrary.path_html = wiki_project_thelibrary.path . '/html/'
+let wiki_project_thelibrary.template_path = wiki_project_thelibrary.path . '/templates/'
 
-" Experiment: an attempt to write acceptance tests using vimwiki
+" Experiment: an attempt to write acceptance tests using vimwiki (wiki #4 aka wiki3)
 let wiki_fitnesse = copy(wiki)
 let wiki_fitnesse.path = 'C:/Fitnesse/FitnesseRoot/'
 let wiki_fitnesse.syntax = 'fitnesse'
@@ -349,7 +355,8 @@ let g:vimwiki_list = [wiki,
     \ wiki_project_timein,
     \ wiki_project_financialpanther,
     \ wiki_fitnesse,
-    \ wiki_RustBook]
+    \ wiki_RustBook,
+    \ wiki_project_thelibrary]
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_use_calendar = 1
 let g:vimwiki_html_header_numbering = 0
