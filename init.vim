@@ -1,11 +1,17 @@
-" ${XDG_CONFIG_HOME}/nvim/init.vim
+" ${XDG_CONFIG_HOME}/nvim/init.vim (linux)
+" ${LOCALAPPDATA}/nvim/init.vim (windows)
 "
 " Neovim configuration file
 
 " **************************************************************************** "
 
 " *** Definitions *** "
-let g:NeovimConfigurationDirectory = '~/.config/nvim'
+if has('win32')
+	let g:ConfigurationDirectory = $LOCALAPPDATA
+else
+	let g:ConfigurationDirectory = $XDG_CONFIG_HOME
+endif
+let g:NeovimConfigurationDirectory = g:ConfigurationDirectory.'/nvim'
 let g:ExtendDirectory = g:NeovimConfigurationDirectory.'/extend'
 
 let g:filetype_aliases = {}
@@ -129,6 +135,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'embear/vim-localvimrc'
 Plug 'valloric/matchtagalways'
+Plug 'tpope/vim-commentary'
 
 " * Revision Control * "
 Plug 'tpope/vim-fugitive'
@@ -283,10 +290,10 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
 " * Shougo/deoplete.nvim * "
 let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = 'python3'
-let g:python_host_prog = 'python'
-"let g:python3_host_prog = "C:/Python36/python.exe"
-"let g:python_host_prog = "C:/Python27/python.exe"
+"let g:python3_host_prog = 'python3'
+"let g:python_host_prog = 'python'
+let g:python3_host_prog = "C:/Python36/python.exe"
+let g:python_host_prog = "C:/Python27/python.exe"
 
 " * scrooloose/syntastic * "
 " NOTE: keeping this active for files that don't have LanguageClient support
