@@ -269,7 +269,6 @@ let g:mta_filetypes = {
 set hidden
 
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
     \ 'go': ['go-langserver'],
@@ -277,6 +276,7 @@ let g:LanguageClient_serverCommands = {
     \ 'c': ['clangd'],
     \ 'python': ['pyls'],
     \ }
+    "\ 'rust': ['rustup', 'run', 'stable', 'rls'],
 "    \ 'lua': ['lua-lsp'],
 "    \ 'sh': ['bash-language-server', 'start'],
 
@@ -290,10 +290,13 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
 " * Shougo/deoplete.nvim * "
 let g:deoplete#enable_at_startup = 1
-"let g:python3_host_prog = 'python3'
-"let g:python_host_prog = 'python'
-let g:python3_host_prog = "C:/Python36/python.exe"
-let g:python_host_prog = "C:/Python27/python.exe"
+if has('win32')
+    let g:python3_host_prog = "C:/Python36/python.exe"
+    let g:python_host_prog = "C:/Python27/python.exe"
+else
+    let g:python3_host_prog = 'python3'
+    let g:python_host_prog = 'python'
+endif
 
 " * scrooloose/syntastic * "
 " NOTE: keeping this active for files that don't have LanguageClient support
