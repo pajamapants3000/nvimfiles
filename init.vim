@@ -353,6 +353,12 @@ let wiki_project_thelibrary.path =
     \ substitute($WORKSPACE, "\\", "/", "g") . '/TheLibrary/wiki/'
 let wiki_project_thelibrary.path_html = wiki_project_thelibrary.path . '/html/'
 let wiki_project_thelibrary.template_path = wiki_project_thelibrary.path . '/templates/'
+" Project soup (wiki #7 aka wiki6)
+let wiki_project_soup = copy(wiki)
+let wiki_project_soup.path = 
+    \ substitute($WORKSPACE, "\\", "/", "g") . '/soup/wiki/'
+let wiki_project_soup.path_html = wiki_project_soup.path . '/html/'
+let wiki_project_soup.template_path = wiki_project_soup.path . '/templates/'
 
 " Experiment: an attempt to write acceptance tests using vimwiki (wiki #4 aka wiki3)
 let wiki_fitnesse = copy(wiki)
@@ -366,7 +372,8 @@ let g:vimwiki_list = [wiki,
     \ wiki_project_financialpanther,
     \ wiki_fitnesse,
     \ wiki_RustBook,
-    \ wiki_project_thelibrary]
+    \ wiki_project_thelibrary,
+    \ wiki_project_soup]
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_use_calendar = 1
 let g:vimwiki_html_header_numbering = 0
