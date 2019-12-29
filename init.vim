@@ -112,10 +112,17 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'fholgado/minibufexpl.vim'
 
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'install.sh',
-    \ }
+if has('win32')
+    Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': 'powershell $errorActionPreference=''Stop''; Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process; .\install.ps1',
+        \ }
+else
+    Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': 'install.sh',
+        \ }
+endif
 
 " (Optional) Multi-entry selection UI. Run install script in repo
 Plug 'junegunn/fzf'
@@ -291,7 +298,7 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " * Shougo/deoplete.nvim * "
 let g:deoplete#enable_at_startup = 1
 if has('win32')
-    let g:python3_host_prog = "C:/Python36/python.exe"
+    let g:python3_host_prog = "C:/Python38/python.exe"
     let g:python_host_prog = "C:/Python27/python.exe"
 else
     let g:python3_host_prog = 'python3'
