@@ -3,6 +3,39 @@
 # Purpose: universal Ultisnips snippets
 #
 
+snippet     {}
+abbr        brace_block
+    {
+    `repeat(' ', &shiftwidth)`${1}
+    }
+    ${0}
+
+snippet     []
+abbr        bracket_block
+    [
+    `repeat(' ', &shiftwidth)`${1}
+    ]
+    ${0}
+
+snippet     ()
+abbr        parentheses_block
+    (
+    `repeat(' ', &shiftwidth)`${1}
+    )
+    ${0}
+
+snippet     {-}
+abbr        brace_auto
+    { ${1} } ${0}
+
+snippet     [-]
+abbr        bracket_auto
+    [ ${1} ] ${0}
+
+snippet     (-)
+abbr        parentheses_auto
+    ( ${1} ) ${0}
+
 snippet Unicode_Lozenge_(◊)
 alias ulo
 options word

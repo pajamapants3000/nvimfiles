@@ -49,7 +49,7 @@ let mapleader = '\'
 let maplocalleader = '`'
 
 " Additional sources
-exe 'source '.g:NeovimConfigurationDirectory.'/kde-devel-vim.vim'
+"exe 'source '.g:NeovimConfigurationDirectory.'/kde-devel-vim.vim'
 
 " *** Functions *** "
 function! NumberToggleRel()
@@ -161,7 +161,13 @@ Plug 'PProvost/vim-ps1'
 Plug 'vim-scripts/fitnesse.vim'
 
 " * Additional Language Support * "
-"Plug 'pajamapants3000/nvim-typescript', {'do': './install.sh'}
+if has('win32')
+    Plug 'pajamapants3000/nvim-typescript', {'do': './install.ps1'}
+else
+    Plug 'pajamapants3000/nvim-typescript', {'do': './install.sh'}
+endif
+
+Plug 'mattn/emmet-vim'
 Plug 'sukima/xmledit'
 Plug 'derekwyatt/vim-fswitch'
 
@@ -240,7 +246,6 @@ nmap <F7> <Plug>ColorstepNext
 nmap <S-F7> <Plug>ColorstepReload
 
 " * Shougo/neosnippet.vim * "
-
 imap j<Tab>     <Plug>(neosnippet_expand)
 smap j<Tab>     <Plug>(neosnippet_expand)
 xmap j<Tab>     <Plug>(neosnippet_expand_target)
@@ -412,6 +417,29 @@ nmap <silent> <Leader>cj :FSBelow<cr>
 nmap <silent> <Leader>cJ :FSSplitBelow<cr>
 "
 
+" * mattn/emmet-vim *
+let g:user_emmet_leader_key=','
+let g:user_emmet_install_global = 0
+let g:user_emmet_settings = {'html': {'default_attributes': {}, 'expandos': {}}}
+let g:user_emmet_settings.html.default_attributes.nav = {}
+let g:user_emmet_settings.html.default_attributes.nav.role = 'navigation'
+let g:user_emmet_settings.html.expandos.divc = 'div.container>'
+let g:user_emmet_settings.html.expandos.divr = 'div.row>'
+let g:user_emmet_settings.html.expandos.divd1 = 'div.col-md-1>'
+let g:user_emmet_settings.html.expandos.divd2 = 'div.col-md-2>'
+let g:user_emmet_settings.html.expandos.divd3 = 'div.col-md-3>'
+let g:user_emmet_settings.html.expandos.divd4 = 'div.col-md-4>'
+let g:user_emmet_settings.html.expandos.divd5 = 'div.col-md-5>'
+let g:user_emmet_settings.html.expandos.divd6 = 'div.col-md-6>'
+let g:user_emmet_settings.html.expandos.divd7 = 'div.col-md-7>'
+let g:user_emmet_settings.html.expandos.divd8 = 'div.col-md-8>'
+let g:user_emmet_settings.html.expandos.divd9 = 'div.col-md-9>'
+let g:user_emmet_settings.html.expandos.divd10 = 'div.col-md-10>'
+let g:user_emmet_settings.html.expandos.divd11 = 'div.col-md-11>'
+let g:user_emmet_settings.html.expandos.divd12 = 'div.col-md-12>'
+let g:user_emmet_settings.html.expandos.nav = 'nav.navbar.navbar-light.bg-light.'
+            \ .'fixed-top>a.navbar-brand[href=#]>i.fa.fa-user>'
+
 " *** Mappings *** "
 " Quick-escape/normal-mode
 inoremap jj <Esc>
@@ -445,8 +473,8 @@ exe 'nnoremap <Leader>dw :<c-u>cd ' .
     \ substitute($WORKSPACE, "\\", "/", "g") . '<cr>'
 
 " vimwiki-like jumping around buffers
-nnoremap <BS> :<c-u>MBEbp<CR>
-nnoremap <Space> :<c-u>MBEbn<CR>
+nnoremap <BS> :<c-u>MBEbb<CR>
+nnoremap <Space> :<c-u>MBEbf<CR>
 
 " easier buffer switching
 nnoremap \b :<c-u>exe v:count . "b"<cr>
@@ -467,6 +495,14 @@ nnoremap <Right> <c-w><c-l>
 
 " delete carriage returns (I think) from line endings in current buffer
 nnoremap \\<Enter> :<c-u>%s/$//
+
+" auto-complete using language-specific snippets
+inoremap {<cr> {}<c-r>=neosnippet#expand('{}')<cr>
+inoremap {<space> {-}<c-r>=neosnippet#expand('{-}')<cr>
+inoremap [<cr> []<c-r>=neosnippet#expand('[]')<cr>
+inoremap [<space> [-]<c-r>=neosnippet#expand('[-]')<cr>
+inoremap (<cr> ()<c-r>=neosnippet#expand('()')<cr>
+inoremap (<space> (-)<c-r>=neosnippet#expand('(-)')<cr>
 
 " *** AutoCommands *** "
 " Toggle number/relativenumber when entering/leaving buffer - more useful display
@@ -502,13 +538,26 @@ augroup filetypedetect
     au! BufEnter *.hpp let b:fswitchdst = 'cpp,cc,c++,cxx,C'
                 \ | let b:fswitchlocs = './,../src,../source,reg:/include/src/'
                 \ | setf cpp
+    au! BufEnter *.html let b:fswitchdst = 'ts,js'
+                \ | let b:fswitchlocs = './'
+                \ | setf html
     " XAML
     au BufNewFile,BufRead,BufEnter *.xaml       setf xml
     au BufNewFile,BufRead,BufEnter *.xaml       setl omnifunc=xaml#complete
     " Rust
     au BufNewFile,BufRead,BufEnter *.rs{,t}        setf rust
     " HTML
-    au BufNewFile,BufRead,BufEnter *.htm{,l}    setf html
+    au BufNewFile,BufRead,BufEnter *.htm{,l} let b:fswitchdst = 'ts,js'
+                \ | let b:fswitchlocs = './'
+                \ | setf html
+    au FileType html,css EmmetInstall
+
+    " TypeScript
+    au BufEnter *.ts let b:fswitchdst = 'html'
+                \ | let b:fswitchlocs = './'
+    " JavaScript
+    au BufEnter *.js let b:fswitchdst = 'html'
+                \ | let b:fswitchlocs = './'
     " RC
     au BufNewFile,BufRead,BufEnter *.rc       setf xml
 
@@ -529,6 +578,9 @@ augroup END
 " VimWiki - prevent buflisted
     au BufNewFile,BufRead,BufEnter *.wiki       set nobuflisted
 
+" Load default snippets
+    au BufNewFile,BufRead,BufEnter *
+            \ :exe 'NeoSnippetSource '.g:neosnippet#snippets_directory.'/all.snip'
 " *** Late-Set Options *** "
 
 set colorcolumn=80
