@@ -1,0 +1,30 @@
+# TypeScript snippets for developing Aurelia projects
+
+snippet     ec
+abbr        export_class_def
+options     head
+    interface I${1:ClassName}RouteParams {
+        ${2:route parameters}
+    }
+
+    export class ${1:ClassName} {
+
+        ${3:Params}
+
+        constructor(${4:constructorParams}) {${5:constructor logic, if any})}
+
+        /* Component Lifecycle */
+        created(owningView: View, myView: View) {${6:created lifecycle event logic, if any})}
+        bind(bindingContext: Object, overrideContext: Object) {${7:bind lifecycle event logic, if any})}
+        attached() {${8:attached lifecycle event logic, if any})}
+        detached() {${9:detached lifecycle event logic, if any})}
+        unbind() {${10:unbind lifecycle event logic, if any})}
+
+        /* Routing Lifecycle */
+        canActivate(params: I${1:ClassName}RouteParams, routeConfig: RouterConfiguration, navigationInstruction: NavigationInstruction) {${11: canActivate lifecycle event logic, if any}}
+        activate(params: I${1:ClassName}RouteParams, routeConfig: RouterConfiguration, navigationInstruction: NavigationInstruction) {${12: activate lifecycle event logic, if any}}
+        canDeactivate() {${13:canDeactivate lifecycle event logic, if any}}
+        deactivate() {${14:deactivate lifecycle event logic, if any}}
+    }
+
+

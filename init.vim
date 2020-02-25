@@ -276,6 +276,10 @@ let g:mta_filetypes = {
     \ 'rc' : 1,
     \}
 
+" * embear/vim-localvimrc * "
+let g:localvimrc_sandbox = 0
+let g:localvimrc_persistent = 1
+
 " * autozimu/LanguageClient-neovim * "
 " Required for operations modifying multiple buffers like rename.
 set hidden
@@ -317,19 +321,16 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_check_on_wq = 0
-let g:syntastic_cpp_checkers = []
-let g:syntastic_c_checkers = []
 " These options are valid if using syntastic for C/C++
 "+ currently using LanguageClient instead, rendering syntastic redundant
 "let g:syntastic_cpp_checkers = ["clang_check"]
 "let g:syntastic_c_checkers = ["clang_check"]
 "let g:syntastic_cpp_compiler_options = ' -std=c++14 -fPIC'
-"let g:syntastic_cpp_clang_check_post_args = ""
-" Using this to ensure no C/C++ auto-checking
+"let g:syntastic_cpp_clang_check_post_args = ''
 let g:syntastic_mode_map = {
-    \ "mode": "active",
+    \ "mode": "passive",
     \ "active_filetypes": [],
-    \ "passive_filetypes": ["c", "cpp"] }
+    \ "passive_filetypes": [] }
 
 " * pajamapants3000/vimwiki * "
 " main wiki (wiki #1 aka wiki0)

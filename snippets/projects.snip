@@ -1,0 +1,60 @@
+# file: nvim/snippets/projects.snip
+#
+# Snippets for vimwiki project management pages
+
+snippet     task
+abbr        task
+options     head
+    %title ${1:TaskName} (Task ${2:TaskId}) | Tasks | ${3:ProjectName}
+
+        = Contents =
+        - [[#Type|Type]]
+        - [[#Description|Description]]
+        - [[#User Stories|User Stories]]
+        - [[#Test Cases|Test Cases]]
+            - [[#Test Cases#Unit Test|Unit Test]]
+            - [[#Test Cases#UI|UI]]
+        - [[#Related Tasks|Related Tasks]]
+            - [[#Related Tasks#Parent Task|Parent Task]]
+            - [[#Related Tasks#Sub-Tasks|Sub-Tasks]]
+            - [[#Related Tasks#Dependencies|Dependencies]]
+        - [[#Road Blocks|Road Blocks]]
+        - [[#Research|Research]]
+        - [[#Program Design|Program Design]]
+        - [[#To-do|To-do]]
+        - [[#Work Log|Work Log]]
+        - [[#Progress Report|Progress Report]]
+
+    = Type =
+    ${4:Bug|Change|Feature|Refactor|Story}
+    = Description =
+    ${0}
+    = User Stories =
+    = Test Cases =
+    == Unit Test ==
+    == UI ==
+    = Related Tasks =
+    == Parent Task ==
+    == Sub-Tasks ==
+    == Dependencies ==
+    = Road Blocks =
+    = Research =
+    = Program Design =
+    = To-do =
+    = Work Log =
+    = Progress Report =
+
+snippet     proj
+abbr        project_index_page
+options     head
+    %title ${1:ProjectName} | Projects
+
+    ${0}
+
+    * [[Concept]]
+    * [[SuggestionBox]]
+    * [[Factory/index|Factory]]
+    * [[Knowledge]]
+    * [[Dreams]]
+
+
