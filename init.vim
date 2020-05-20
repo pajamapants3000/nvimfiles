@@ -7,9 +7,11 @@
 
 " *** Definitions *** "
 if has('win32')
-	let g:ConfigurationDirectory = $LOCALAPPDATA
+    let g:ConfigurationDirectory = $LOCALAPPDATA
+    let g:Terminal = 'pwsh'
 else
-	let g:ConfigurationDirectory = $XDG_CONFIG_HOME
+    let g:ConfigurationDirectory = $XDG_CONFIG_HOME
+    let g:Terminal = 'bash'
 endif
 let g:NeovimConfigurationDirectory = g:ConfigurationDirectory.'/nvim'
 let g:ExtendDirectory = g:NeovimConfigurationDirectory.'/extend'
@@ -118,7 +120,7 @@ if has('win32')
         \ 'do': 'powershell $errorActionPreference=''Stop''; Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process; .\install.ps1',
         \ }
 else
-    Plug 'autozimu/LanguageClient-neovim', {
+    plug 'autozimu/languageclient-neovim', {
         \ 'branch': 'next',
         \ 'do': 'install.sh',
         \ }
@@ -345,7 +347,7 @@ let wiki.path_html = wiki.path . '/html'
 " Project wikis - for keeping project wiki with source code repository
 " Project TimeIn (wiki #2 aka wiki1)
 let wiki_project_timein = copy(wiki)
-let wiki_project_timein.path = 
+let wiki_project_timein.path =
     \ substitute($WORKSPACE, "\\", "/", "g") . '/TimeIn/wiki/'
 let wiki_project_timein.path_html = wiki_project_timein.path . '/html/'
 let wiki_project_timein.template_path = wiki_project_timein.path . '/templates/'
@@ -356,22 +358,34 @@ let wiki_project_financialpanther.path =
 let wiki_project_timein.path_html = wiki_project_financialpanther.path . '/html/'
 " Project RustBook (working through The Rust Programming Language) (wiki #5 aka wiki4)
 let wiki_RustBook = copy(wiki)
-let wiki_RustBook.path = 
+let wiki_RustBook.path =
     \ substitute($WORKSPACE, "\\", "/", "g") . '/Rust/TheBook/wiki/'
 let wiki_RustBook.path_html = wiki_RustBook.path . '/html/'
 let wiki_RustBook.template_path = wiki_RustBook.path . '/templates/'
 " Project TheLibrary (wiki #6 aka wiki5)
 let wiki_project_thelibrary = copy(wiki)
-let wiki_project_thelibrary.path = 
+let wiki_project_thelibrary.path =
     \ substitute($WORKSPACE, "\\", "/", "g") . '/TheLibrary/wiki/'
 let wiki_project_thelibrary.path_html = wiki_project_thelibrary.path . '/html/'
 let wiki_project_thelibrary.template_path = wiki_project_thelibrary.path . '/templates/'
 " Project soup (wiki #7 aka wiki6)
 let wiki_project_soup = copy(wiki)
-let wiki_project_soup.path = 
+let wiki_project_soup.path =
     \ substitute($WORKSPACE, "\\", "/", "g") . '/soup/wiki/'
 let wiki_project_soup.path_html = wiki_project_soup.path . '/html/'
 let wiki_project_soup.template_path = wiki_project_soup.path . '/templates/'
+" Project clutter (wiki #8 aka wiki7)
+let wiki_project_clutter = copy(wiki)
+let wiki_project_clutter.path =
+    \ substitute($WORKSPACE, "\\", "/", "g") . '/clutter.wiki/'
+let wiki_project_clutter.path_html = wiki_project_clutter.path . '/html/'
+let wiki_project_clutter.template_path = wiki_project_clutter.path . '/templates/'
+" Project practice (wiki #9 aka wiki8)
+let wiki_project_practice = copy(wiki)
+let wiki_project_practice.path =
+    \ substitute($WORKSPACE, "\\", "/", "g") . '/Practice.wiki/'
+let wiki_project_practice.path_html = wiki_project_practice.path . '/html/'
+let wiki_project_practice.template_path = wiki_project_practice.path . '/templates/'
 
 " Experiment: an attempt to write acceptance tests using vimwiki (wiki #4 aka wiki3)
 let wiki_fitnesse = copy(wiki)
@@ -386,7 +400,9 @@ let g:vimwiki_list = [wiki,
     \ wiki_fitnesse,
     \ wiki_RustBook,
     \ wiki_project_thelibrary,
-    \ wiki_project_soup]
+    \ wiki_project_soup,
+    \ wiki_project_clutter,
+    \ wiki_project_practice]
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_use_calendar = 1
 let g:vimwiki_html_header_numbering = 0
@@ -497,13 +513,22 @@ nnoremap <Right> <c-w><c-l>
 " delete carriage returns (I think) from line endings in current buffer
 nnoremap \\<Enter> :<c-u>%s/$//
 
-" auto-complete using language-specific snippets
+" auto-close using help from (possibly language-specific) snippets
 inoremap {<cr> {}<c-r>=neosnippet#expand('{}')<cr>
 inoremap {<space> {-}<c-r>=neosnippet#expand('{-}')<cr>
 inoremap [<cr> []<c-r>=neosnippet#expand('[]')<cr>
 inoremap [<space> [-]<c-r>=neosnippet#expand('[-]')<cr>
 inoremap (<cr> ()<c-r>=neosnippet#expand('()')<cr>
 inoremap (<space> (-)<c-r>=neosnippet#expand('(-)')<cr>
+" auto-close quotations
+inoremap <expr> " strpart(getline("."), col(".") - 1, 1) == '"'
+            \ ? "\<Right>"
+            \ : "\"\"\<Left>"
+
+
+" terminal mappings
+tnoremap <Esc> <C-\><C-n>
+nnoremap <leader>tt :<c-u>exe 'below new term://'.g:Terminal<CR><s-a>
 
 " *** AutoCommands *** "
 " Toggle number/relativenumber when entering/leaving buffer - more useful display
@@ -601,6 +626,15 @@ set nowrap
 set spell
 set iskeyword=@,48-57,_,192-255
 set viminfo=%,!,'50,\"100,:100
+
+if has('win32')
+    set shell=pwsh.exe
+    set shellcmdflag=-NoProfile\ -NoLogo\ -NonInteractive\ -Command
+    set shellpipe=|
+    set shellredir=>
+else
+endif
+
 " Session options to save on request
 set ssop-=options               " Don't mess with options/plugins loaded!
 
