@@ -145,6 +145,7 @@ Plug 'tpope/vim-repeat'
 Plug 'embear/vim-localvimrc'
 Plug 'valloric/matchtagalways'
 Plug 'tpope/vim-commentary'
+Plug 'chrisbra/recover.vim'
 
 " * Revision Control * "
 Plug 'tpope/vim-fugitive'
@@ -309,8 +310,8 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " * Shougo/deoplete.nvim * "
 let g:deoplete#enable_at_startup = 1
 if has('win32')
-    let g:python3_host_prog = "C:/Python38/python.exe"
-    let g:python_host_prog = "C:/Python27/python.exe"
+    let g:python3_host_prog = $PROGRAMDATA.'/Anaconda3/python.exe'
+    let g:python_host_prog = 'C:/Python27/python.exe'
 else
     let g:python3_host_prog = 'python3'
     let g:python_host_prog = 'python'
@@ -371,7 +372,7 @@ let wiki_project_thelibrary.template_path = wiki_project_thelibrary.path . '/tem
 " Project soup (wiki #7 aka wiki6)
 let wiki_project_soup = copy(wiki)
 let wiki_project_soup.path =
-    \ substitute($WORKSPACE, "\\", "/", "g") . '/soup/wiki/'
+    \ substitute($WORKSPACE, "\\", "/", "g") . '/soup.wiki/'
 let wiki_project_soup.path_html = wiki_project_soup.path . '/html/'
 let wiki_project_soup.template_path = wiki_project_soup.path . '/templates/'
 " Project clutter (wiki #8 aka wiki7)
